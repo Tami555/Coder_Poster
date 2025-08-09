@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block headstyle %}
+    <link type="text/css" rel="stylesheet" href="{% static 'posts/css/one_post_page.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="main_block">
+        <div class="post-header">
+            <h2 class="post-title">{{post.title}}</h2>
+            <p class="post-description">{{post.description}}</p>
+        </div>
+
+        <div class="post-image-wrapper">
+            <img src="{{post.image.url}}" class="post-image" alt="{{post.title}}">
+        </div>
+
+        <div class="post-meta">
+            <div class="author-info">
+                <div class="meta-item">
+                    <span class="meta-label">Автор:</span>
+                    <a href="{% url 'users:profile' post.coder.pk %}" class="author-link">
+                        {% if post.coder.first_name %}
+                            {{post.coder.first_name}} {{post.coder.last_name}}
+                        {% else %}
+                            {{post.coder.username}}
+                        {% endif %}
+                    </a>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Обновлено:</span>
+                    <span class="meta-value">{{post.data_update|date:"SHORT_DATE_FORMAT"}}</span>
+                </div>
+            </div>
+
+            <div class="category-tags">
+                <div class="meta-item">
+                    <span class="meta-label">Категория:</span>
+                    <a href="{{post.category.get_absolute_url}}" class="category-link">{{post.category.title}}</a>
+                </div>
+                <div class="tags-container">
+                    {% for t in post.tags.all %}
+                        <a href="{{t.get_absolute_url}}" class="tag-link">{{t.title}}</a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% if user.pk == post.coder.pk %}
+                <div class="post-actions">
+                    <a class="post-action-btn edit-btn" href="{% url 'edit_post' post.slug %}">
+                        <svg class="btn-icon" viewBox="0 0 24 24">
+                            <path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
+                        </svg>
+                        <span>Редактировать</span>
+                    </a>
+                    <a class="post-action-btn delete-btn" href="{% url 'delete_post' post.slug %}">
+                        <svg class="btn-icon" viewBox="0 0 24 24">
+                            <path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" />
+                        </svg>
+                        <span>Удалить</span>
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="post-content">
+            {{post.content|linebreaks}}
+        </div>
+
+        {% with maybe_like_posts=post.get_maybe_like_post %}
+        {% if maybe_like_posts|length %}
+        <h2 class="maybe_like_title">Вам может понравиться: </h2>
+            <div class="blocks_maybe_like">
+                {% for l in maybe_like_posts %}
+                    <div class="like_block">
+                        <a href="{{l.get_absolute_url}}">
+                            <img src="{{l.image.url}}">
+                            <h3>{{l.title}}</h3>
+                            <p>{{l.description}}</p>
+                            <div class="tags-container">
+                                {% for t in l.tags.all %}
+                                    <a href="{{t.get_absolute_url}}" class="tag-link">{{t.title}}</a>
+                                {% endfor %}
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {%endwith%}
+    </div>
+{% endblock %}

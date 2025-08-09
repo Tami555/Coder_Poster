@@ -1,0 +1,119 @@
+/* Основные цвета */
+:root {
+  --primary-dark: rgb(15, 16, 22);
+  --primary-accent: #ADFF2F;
+  --primary-light: aliceblue;
+}
+
+/* Переопределение header */
+#header {
+  background: var(--primary-dark) !important;
+  color: var(--primary-accent) !important;
+  border-bottom: 2px solid var(--primary-accent);
+}
+
+#branding h1 {
+  color: var(--primary-accent) !important;
+  font-weight: 700;
+  text-shadow: 0 0 5px rgba(173, 255, 47, 0.3);
+}
+
+/* Навигация */
+.module h2, .module caption, .inline-group h2 {
+  background: var(--primary-dark) !important;
+  color: var(--primary-accent) !important;
+  font-family: 'Courier New', monospace;
+}
+
+/* Кнопки */
+.button, input[type=submit], input[type=button], .submit-row input {
+  background: var(--primary-dark) !important;
+  color: var(--primary-accent) !important;
+  border: 1px solid var(--primary-accent) !important;
+  transition: all 0.3s !important;
+}
+
+.button:hover, input[type=submit]:hover, input[type=button]:hover {
+  background: var(--primary-accent) !important;
+  color: var(--primary-dark) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(173, 255, 47, 0.3);
+}
+
+/* Формы */
+input:focus, textarea:focus, select:focus {
+  border-color: var(--primary-accent) !important;
+  box-shadow: 0 0 5px rgba(173, 255, 47, 0.5);
+}
+
+/* Таблицы */
+#changelist table thead th {
+  background: var(--primary-dark) !important;
+  color: var(--primary-accent) !important;
+}
+
+#changelist table tbody tr:hover {
+  background: rgba(173, 255, 47, 0.1) !important;
+}
+
+/* Sidebar */
+#user-tools {
+  color: var(--primary-accent) !important;
+  text-shadow: none;
+}
+
+#user-tools a {
+  color: var(--primary-accent) !important;
+  border-bottom: 1px dotted var(--primary-accent);
+}
+
+/* Логотип в login-форме */
+.login #header h1 a {
+  color: var(--primary-accent) !important;
+  font-size: 2em;
+  text-shadow: 0 0 10px rgba(173, 255, 47, 0.5);
+}
+
+/* Анимации */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(173, 255, 47, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(173, 255, 47, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(173, 255, 47, 0); }
+}
+
+.submit-row input.default {
+  animation: pulse 2s infinite;
+}
+
+/* Кастомные элементы */
+.dashboard #content {
+  background: var(--primary-dark);
+}
+
+.dashboard .module {
+  background: rgba(15, 16, 22, 0.9);
+  border: 1px solid var(--primary-accent);
+  box-shadow: 0 0 15px rgba(173, 255, 47, 0.2);
+}
+
+/* Иконки */
+.icon-addlink, .icon-changelink, .icon-deletelink {
+  filter: invert(77%) sepia(51%) saturate(1185%) hue-rotate(40deg) brightness(102%) contrast(101%);
+}
+
+/* Ховер-эффекты */
+a:hover {
+  color: var(--primary-accent) !important;
+  transition: color 0.2s;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+  #header {
+    padding: 10px !important;
+  }
+
+  #branding h1 {
+    font-size: 1.2em !important;
+  }
+}

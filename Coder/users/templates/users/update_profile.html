@@ -1,0 +1,5 @@
+{% extends 'users/forms.html' %}
+
+{% block plusform %}
+    <a href="{% url 'users:password_change' %}" class="submit-btn"> Сменить пароль</a>
+{% endblock %}

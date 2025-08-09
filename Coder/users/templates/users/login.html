@@ -1,0 +1,32 @@
+{% extends 'users/forms.html' %}
+{% load static %}
+
+{% block plusform %}
+    <a href="{% url 'users:password_reset'%}" class="forget_password">Забыли пароль?</a>
+
+    <div class="social-auth-container">
+        <div class="auth-divider">
+            <span class="divider-line"></span>
+            <span class="divider-text">Или войти через</span>
+            <span class="divider-line"></span>
+        </div>
+
+        <div class="social-buttons">
+            <a href="{% url 'social:begin' 'github' %}" class="social-btn github-btn">
+                <span class="social-icon">
+                    <img src="{% static 'users/images/github.jpg' %}" alt="GitHub" width="24" height="24">
+                </span>
+                <span class="social-text">GitHub</span>
+                <span class="social-glow"></span>
+            </a>
+
+            <a href="{% url 'social:begin' 'google-oauth2' %}" class="social-btn google-btn">
+                <span class="social-icon">
+                    <img src="{% static 'users/images/google.jpg' %}" alt="Google" width="24" height="24">
+                </span>
+                <span class="social-text">Google</span>
+                <span class="social-glow"></span>
+            </a>
+        </div>
+    </div>
+{% endblock %}

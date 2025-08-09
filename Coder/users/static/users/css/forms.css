@@ -1,0 +1,316 @@
+/* Основные стили формы */
+.form-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background: rgba(15, 16, 22, 0.8);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(173, 255, 47, 0.3);
+}
+
+.form-title {
+    color: #ADFF2F;
+    font-family: 'Courier New', monospace;
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.form-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ADFF2F, transparent);
+}
+
+.custom-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Стили полей ввода */
+.form-field {
+    position: relative;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    color: aliceblue;
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.custom-form input:not([type="hidden"]),
+.custom-form textarea,
+.custom-form select {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(240, 248, 255, 0.1);
+    border: 1px solid rgba(173, 255, 47, 0.3);
+    border-radius: 8px;
+    color: aliceblue;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.custom-form input:focus,
+.custom-form textarea:focus,
+.custom-form select:focus {
+    outline: none;
+    border-color: #ADFF2F;
+    box-shadow: 0 0 0 2px rgba(173, 255, 47, 0.2);
+    background: rgba(240, 248, 255, 0.05);
+}
+
+/* Стили для файлового ввода */
+.custom-form input[type="file"] {
+    padding: 10px;
+    border: 1px dashed rgba(173, 255, 47, 0.5);
+}
+
+.custom-form input[type="file"]:focus {
+    border-style: solid;
+}
+
+/* Стили ошибок */
+.form-errors,
+.field-errors {
+    color: #ff6b6b;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+/* Стили кнопки */
+.submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 25px;
+    background: linear-gradient(135deg, rgba(173, 255, 47, 0.2), rgba(173, 255, 47, 0.1));
+    color: #ADFF2F;
+    border: 1px solid #ADFF2F;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(173, 255, 47, 0.2), transparent);
+    transition: all 0.6s ease;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(135deg, rgba(173, 255, 47, 0.3), rgba(173, 255, 47, 0.2));
+    box-shadow: 0 5px 15px rgba(173, 255, 47, 0.2);
+    transform: translateY(-2px);
+}
+
+.submit-btn:hover::before {
+    left: 100%;
+}
+
+.btn-icon {
+    width: 20px;
+    height: 20px;
+    fill: #ADFF2F;
+    transition: transform 0.3s ease;
+}
+
+.submit-btn:hover .btn-icon {
+    transform: translateX(5px);
+}
+
+
+.forget_password{
+    text-decoration: none;
+    cursor: pointer;
+    align-self: center;
+    text-align: center;
+    color: white;
+    font-size: 15px;
+    transition: all 0.4s ease;
+}
+.forget_password:hover{
+    box-shadow: 0 8px 20px rgba(161, 248, 30, 0.363);
+}
+/* Стили для блока социальной авторизации */
+.social-auth-container {
+    margin-top: 40px;
+}
+
+.auth-divider {
+    display: flex;
+    align-items: center;
+    margin: 25px 0;
+    gap: 15px;
+}
+
+.divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(173, 255, 47, 0.3), transparent);
+}
+
+.divider-text {
+    color: rgba(240, 248, 255, 0.7);
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+/* Общие стили для кнопок */
+.social-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    border: 1px solid transparent;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(15, 16, 22, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.social-text {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.social-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.6s ease;
+}
+
+.social-btn:hover .social-glow {
+    left: 100%;
+}
+
+/* Специфичные стили для кнопок */
+.github-btn {
+    background: rgba(36, 41, 46, 0.7);
+    color: #f0f6fc;
+    border-color: rgba(240, 246, 252, 0.2);
+}
+
+.github-btn:hover {
+    background: rgba(46, 51, 56, 0.8);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(46, 164, 79, 0.2);
+}
+
+.google-btn {
+    background: rgba(234, 67, 53, 0.1);
+    color: #f1f1f1;
+    border: 1px solid rgba(234, 67, 53, 0.3);
+    animation: google-border-pulse 3s infinite;
+}
+
+.google-btn:hover {
+    background: rgba(234, 67, 53, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(234, 67, 53, 0.2);
+    animation: none;
+}
+
+/* Анимация для Google кнопки */
+@keyframes google-border-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(234, 67, 53, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 6px rgba(234, 67, 53, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(234, 67, 53, 0);
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+    .social-btn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    .social-icon {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+
+
+/* Анимация загрузки */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(173, 255, 47, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(173, 255, 47, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(173, 255, 47, 0); }
+}
+
+.submit-btn.loading {
+    animation: pulse 2s infinite;
+    pointer-events: none;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .form-title {
+        font-size: 1.8rem;
+    }
+}
+

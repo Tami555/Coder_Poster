@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block headstyle %}
+    <link type="text/css" rel="stylesheet" href="{% static 'posts/css/posts_page.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    {% if title_type %}
+    <div class="block_title_and_back">
+        <a class="back" href="{% url 'all_posts'%}">&lt;</a>
+        <h2 class="title_type">{{title_type}}</h2>
+    </div>
+    {% endif %}
+    <div class="blocks_posts">
+        {% if posts|length %}
+        {% for p in posts %}
+            <div class="block_post">
+                <a href="{{p.get_absolute_url}}">
+                    <img src="{{p.image.url}}">
+                <div class="block_infa">
+                    <h2>{{p.title}}</h2>
+                    <p>{{p.description}}</p>
+
+                     <div class="tags_blocks">
+                        {% for t in p.tags.all %}
+                            <a href="{{t.get_absolute_url}}" class="block_tag">
+                                {{t.title}}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                </a>
+            </div>
+        {% endfor %}
+        {% else %}
+            <h2>Пока ничего нет :( </h2>
+        {% endif %}
+    </div>
+    {% if page_obj.has_other_pages %}
+        <div class="paginator_block">
+            {% for p in paginator.page_range%}
+                {% if page_obj.number == p %}
+                    <p class="page_block up">{{p}}</p>
+                {% else %}
+                    <a class="page_block" href="?page={{p}}">{{p}}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

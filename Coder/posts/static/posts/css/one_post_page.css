@@ -1,0 +1,388 @@
+.main_block {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.post-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.post-title {
+    color: aliceblue;
+    font-size: 42px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.post-description {
+    color: rgba(240, 248, 255, 0.8);
+    font-size: 20px;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.post-image-wrapper {
+    margin: 25px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.post-image {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+    display: block;
+}
+
+.post-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 20px 0;
+    border-top: 1px solid rgba(173, 255, 47, 0.2);
+    border-bottom: 1px solid rgba(173, 255, 47, 0.2);
+}
+
+.author-info, .category-tags {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.meta-label {
+    color: #ADFF2F;
+    font-weight: 600;
+}
+
+.meta-value {
+    color: aliceblue;
+}
+
+.author-link {
+    color: aliceblue;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.author-link:hover {
+    color: #ADFF2F;
+}
+
+.category-link {
+    color: aliceblue;
+    text-decoration: none;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background-color: rgba(173, 255, 47, 0.1);
+    border: 1px solid #ADFF2F;
+    transition: all 0.3s;
+}
+
+.category-link:hover {
+    background-color: rgba(173, 255, 47, 0.2);
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag-link {
+    color: rgb(15, 16, 22);
+    background-color: #ADFF2F;
+    padding: 5px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.tag-link:hover {
+    background-color: rgba(173, 255, 47, 0.8);
+    transform: translateY(-2px);
+}
+
+.post-content {
+    color: rgba(240, 248, 255, 0.9);
+    font-size: 18px;
+    line-height: 1.7;
+    margin-top: 40px;
+    padding-bottom: 30px;
+}
+
+
+/* Заголовок блока */
+.maybe_like_title {
+    margin: 60px 0 30px;
+    color: #ADFF2F;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 500;
+    font-size: 35px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.maybe_like_title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ADFF2F, transparent);
+}
+
+.blocks_maybe_like {
+    display: flex;
+    gap: 30px;
+    padding: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; 
+    margin-bottom: 40px;
+}
+
+.blocks_maybe_like::-webkit-scrollbar {
+    display: none;
+}
+
+/* Карточка рекомендации */
+.like_block {
+    scroll-snap-align: start;
+    flex: 0 0 380px;
+    background: rgba(240, 248, 255, 0.1);
+    border-radius: 20px;
+    padding: 35px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    border: 1px solid rgba(173, 255, 47, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.like_block:hover {
+    transform: translateY(-8px);
+    background: rgba(240, 248, 255, 0.15);
+    box-shadow: 0 12px 40px rgba(173, 255, 47, 0.15);
+    border-color: rgba(173, 255, 47, 0.4);
+}
+
+.like_block a {
+    text-decoration: none;
+    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Изображение */
+.like_block img {
+    width: 100%;
+    height: 220px;
+    border-radius: 15px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    transition: transform 0.4s ease;
+}
+
+.like_block:hover img {
+    transform: scale(1.03);
+}
+
+/* Текстовая часть */
+.like_block h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 10px;
+    line-height: 1.4;
+    flex-grow: 1;
+    transition: color 0.3s;
+}
+
+.like_block:hover h3 {
+    color: #ADFF2F;
+}
+
+.like_block p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(240, 248, 255, 0.8);
+    margin: 0 0 15px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Теги */
+.like_block .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+}
+
+.like_block .tag-link {
+    background: rgba(173, 255, 47, 0.2);
+    color: #ADFF2F;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.like_block .tag-link:hover {
+    background: #ADFF2F;
+    color: rgb(15, 16, 22);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .maybe_like_title {
+        font-size: 28px;
+        margin: 40px 0 20px;
+    }
+    
+    .like_block {
+        flex: 0 0 300px;
+        padding: 20px;
+    }
+    
+    .like_block img {
+        height: 180px;
+    }
+    
+    .like_block h3 {
+        font-size: 18px;
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .post-title {
+        font-size: 32px;
+    }
+    
+    .post-description {
+        font-size: 18px;
+    }
+    
+    .author-info, .category-tags {
+        flex-direction: column;
+    }
+}
+
+/* Контейнер для кнопок */
+.post-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Базовые стили кнопок */
+.post-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Иконки */
+.btn-icon {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+}
+
+/* Кнопка редактирования */
+.edit-btn {
+    background: linear-gradient(135deg, #ADFF2F, #9DEE28);
+    color: rgb(15, 16, 22);
+}
+
+.edit-btn:hover {
+    background: linear-gradient(135deg, #BFFF3F, #ADFF2F);
+    box-shadow: 0 6px 12px rgba(173, 255, 47, 0.3);
+    transform: translateY(-2px);
+}
+
+.edit-btn:hover .btn-icon {
+    transform: rotate(-15deg) scale(1.1);
+}
+
+/* Кнопка удаления */
+.delete-btn {
+    background: linear-gradient(135deg, #ff4d4d, #cc0000);
+    color: white;
+}
+
+.delete-btn:hover {
+    background: linear-gradient(135deg, #ff6666, #ff4d4d);
+    box-shadow: 0 6px 12px rgba(255, 77, 77, 0.3);
+    transform: translateY(-2px);
+}
+
+.delete-btn:hover .btn-icon {
+    transform: scale(1.1) translateX(2px);
+}
+
+/* Эффект "волны" при наведении */
+.post-action-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: all 0.6s ease;
+}
+
+.post-action-btn:hover::after {
+    left: 100%;
+}
+
+/* Анимация при нажатии */
+.post-action-btn:active {
+    transform: translateY(1px) !important;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .post-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .post-action-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block headstyle %}
+    <link type="text/css" rel="stylesheet" href="{% static 'users/css/forms.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="form-container">
+        <h1 class="form-title">{{title}}</h1>
+        <form action="" method="post" enctype="multipart/form-data" class="custom-form" novalidate>
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{next}}">
+
+            <div class="form-errors">
+                {{ form.non_field_errors }}
+            </div>
+
+            {% for f in form %}
+                <div class="form-field">
+                    <label for="{{f.id_for_label}}" class="form-label">{{f.label}}</label>
+                    {{f}}
+                    <div class="field-errors">
+                        {{f.errors}}
+                    </div>
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="submit-btn">
+                <span>{{btn_title}}</span>
+                <svg class="btn-icon" viewBox="0 0 24 24">
+                    <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" />
+                </svg>
+            </button>
+        {% block plusform %}
+        {% endblock %}
+        </form>
+    </div>
+{% endblock %}

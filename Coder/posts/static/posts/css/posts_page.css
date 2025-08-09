@@ -1,0 +1,114 @@
+.block_title_and_back{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    align-self: self-start;
+    margin-left: 60px;
+    margin-top: 30px;
+}
+
+.block_title_and_back a{
+    color: white;
+    font-size: 45px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+}
+
+.title_type{
+    font-size: 40px;
+    text-decoration: underline 2px #ADFF2F;
+    font-family: 'Courier New', Courier, monospace;
+    color: #ADFF2F;
+}
+
+.blocks_posts{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.blocks_posts a{
+    text-decoration: none;
+    color: rgb(15, 16, 22);
+}
+
+.block_post{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 950px;
+    border-radius: 40px;
+    background-color: aliceblue;
+    color: rgb(15, 16, 22);
+    height: 300px;
+    margin: 40px;
+    gap: 30px;
+    transition: transform 0.5s ease;
+}
+.block_post:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px #ADFF2F;
+}
+.block_post img {
+    width: 350px;
+    height: 300px;
+    border-radius: 40px 0px 0px 40px;
+}
+
+.block_infa{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: rgb(15, 16, 22);
+    font-family: Arial, Helvetica, sans-serif;
+}
+.block_infa h2{
+    font-size: 30px;
+    font-weight: 500;
+}
+.block_infa p{
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.block_maybe_like{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 350px;
+}
+.block_maybe_like a{
+    text-decoration: none;
+    color: grey;
+    font-size: 13px;
+    font-family: 'Courier New', Courier, monospace;
+}
+.block_maybe_like a:hover{
+    text-decoration: underline 1px grey;
+}
+.tags_blocks{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.block_tag{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 90px;
+    height: 50px;
+    border-radius: 30px;
+    color: rgb(15, 16, 22);
+    background-color: #ADFF2F;
+    font-weight: 600;
+}

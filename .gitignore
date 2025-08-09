@@ -1,0 +1,69 @@
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+media/
+staticfiles/
+
+# PostgreSQL
+*.pid
+*.dump
+*.rdb
+
+# Redis
+dump.rdb
+
+# Python
+venv/
+.env/
+.venv/
+env/
+*.env
+pyvenv.cfg
+.python-version
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Node.js (если вдруг используется)
+node_modules/
+npm-debug.log*
+
+# PyCharm
+.idea/
+*.iml
+
+# Virtual environment
+ENV/
+
+# Build & Distribution
+build/
+dist/
+*.egg-info/
+*.manifest
+*.spec
+
+# Debug stuff
+debug.log
+*.debug
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+djvenv/

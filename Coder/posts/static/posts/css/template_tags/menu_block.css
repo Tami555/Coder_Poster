@@ -1,0 +1,236 @@
+.block_menu{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 125px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(15, 16, 22);
+    font-weight: 700;
+    background-color: #ADFF2F;
+}
+.logo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: -15px;
+}
+.logo img{
+    width: 65px;
+    height: 65px;
+}
+
+.logo p{
+    text-decoration: none;
+    color: rgb(15, 16, 22);
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 900;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.all_links_blocks{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.links_block{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-width: 850px;
+    height: 40px;
+    padding: 5px;
+    border-radius: 20px;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px 10px;
+    gap: 30px;
+    
+}
+.links_block a{
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.block_category{
+    background-color: rgb(15, 16, 22);
+}
+.block_category a{
+    color: white;
+}
+.block_category a:hover{
+    text-decoration: underline 2px white;
+}
+
+.block_tags{
+    background-color: white;
+}
+.block_tags a{
+    color: rgb(15, 16, 22);
+}
+.block_tags a:hover{
+    text-decoration: underline 2px rgb(15, 16, 22);
+}
+
+.paginator_block{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap:50px
+
+}
+.page_block{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    text-decoration: none;
+    border-radius: 100%;
+    cursor: pointer;
+    background-color: aliceblue;
+    color: black;
+    font-size: 25px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 800;
+}
+.up{
+    background-color: #ADFF2F;
+}
+
+.user_block {
+    margin: 20px 0;
+}
+
+.username {
+    color: aliceblue;
+    font-family: 'Courier New', monospace;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    background: rgba(173, 255, 47, 0.1);
+    border: 1px solid rgba(173, 255, 47, 0.3);
+}
+
+/* Блок кнопок */
+.btn_block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Базовые стили кнопок */
+.btn_user {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-family: 'Courier New', monospace;
+    font-weight: 900;
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid black;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Эффект сияния (общий для обеих кнопок) */
+.btn_user::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: all 0.6s ease;
+}
+
+.btn_user:hover::before {
+    left: 100%;
+}
+
+/* Иконки */
+.btn-icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.btn_user:hover .btn-icon {
+    transform: translateX(3px);
+}
+
+/* Конкретные стили для кнопки Входа */
+.login {
+    background: linear-gradient(135deg, #ADFF2F, #9DEE28);
+    color: rgb(15, 16, 22);
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+.login .btn-icon {
+    fill: rgb(15, 16, 22); /* Черная иконка */
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2)); /* Легкая тень для контраста */
+}
+
+.login:hover {
+    background: linear-gradient(135deg, #BFFF3F, #ADFF2F);
+    box-shadow: 0 5px 20px rgba(173, 255, 47, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Конкретные стили для кнопки Регистрации */
+.registration {
+    background: linear-gradient(135deg, aliceblue, #e0f0ff);
+    color: rgb(15, 16, 22);
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.registration:hover {
+    background: linear-gradient(135deg, #ffffff, aliceblue);
+    box-shadow: 0 5px 20px rgba(240, 248, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.account_block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.account_block img{
+    width: 50px;
+    height: 50px;
+}
+.account_block p{
+    color: black;
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 25px;
+}
+
+.is_authenticated{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}

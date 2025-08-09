@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block headstyle %}
+    <link type="text/css" rel="stylesheet" href="{% static 'users/css/profile.css' %}">
+{% endblock %}
+
+
+{% block content %}
+{% with posts=coder.post.all%}
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <img src="{{coder.photo.url}}" alt="Аватар {{coder.username}}">
+                <div class="posts-count">{{posts|length }} статей</div>
+            </div>
+
+            <div class="profile-info">
+                <h1 class="profile-name">{{coder.first_name}} {{coder.last_name}}</h1>
+
+                <div class="profile-meta">
+                    <div class="meta-item">
+                        <span class="meta-icon">🎂</span>
+                        <span>{{coder.birthday|date:"d.m.Y"}}</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">✉️</span>
+                        <span>{{coder.email}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-about">
+            <h2 class="section-title">О себе</h2>
+            <div class="about-content">{{coder.about|linebreaks}}</div>
+        </div>
+
+        <div class="profile-posts">
+            <h2 class="section-title">
+                {% if coder.id == user.id %}
+                    Ваши публикации
+                {% else %}
+                    Статьи автора
+                {% endif %}
+            </h2>
+
+            <div class="posts-grid">
+                {% if posts %}
+                    {% for p in posts %}
+                        <a href="{{p.get_absolute_url}}" class="post-card">
+                            <div class="post-image">
+                                <img src="{{p.image.url}}" loading="lazy" alt="{{p.title}}">
+                            </div>
+                            <h3 class="post-title">{{p.title}}</h3>
+                            <div class="post-date">{{p.data_update|date:"d M Y"}}</div>
+                        </a>
+                    {% endfor %}
+                {% else %}
+                    <p>Пока ничего нет :( </p>
+                {% endif %}
+            </div>
+        </div>
+
+        {% if coder == user %}
+            <div class="profile-actions">
+                <a href="{% url 'users:profile_edit' %}" class="action-btn edit-btn">Редактировать профиль</a>
+                <a href="{% url 'users:logout' %}" class="action-btn logout-btn">Выйти</a>
+            </div>
+        {% endif %}
+    </div>
+{% endwith %}
+{% endblock %}

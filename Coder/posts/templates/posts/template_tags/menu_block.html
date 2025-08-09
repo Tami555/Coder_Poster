@@ -1,0 +1,52 @@
+{% load static %}
+{% load cache %}
+<div class="block_menu">
+    <a class="logo" href="{% url 'home' %}">
+        <img src="{% static 'posts/images/logo_coder_poster.jpg'%}">
+        <p>Coder-Poster</p>
+    </a>
+
+    {% cache 500 cat_tag %}
+    <div class="all_links_blocks">
+        <div class="links_block block_category">
+            {% for cat in cat_list%}
+                <a href="{{cat.get_absolute_url}}">{{cat.title}}</a>
+            {% endfor %}
+        </div>
+        <div class="links_block block_tags">
+            {% for tag in tags_list%}
+                <a href="{{tag.get_absolute_url}}">{{tag.title}}</a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endcache %}
+
+    <div class="user_block">
+    {% if user.is_authenticated%}
+        <div class="is_authenticated">
+            {% if perms.posts.add_post %}
+                <a class="btn_user registration" href="{% url 'add_post' %}">Творить</a>
+            {% endif %}
+            <a class="account_block" href="{% url 'users:profile' user.pk %}">
+                <img src="{% static 'posts/images/anonim.png'%}">
+                <p class="username">{{user.username}}</p>
+            </a>
+        </div>
+    {% else %}
+        <div class="btn_block">
+            <a class="btn_user login" href="{% url 'users:login' %}">
+                <span>Вход</span>
+                <svg class="btn-icon" viewBox="0 0 24 24">
+                    <path d="M10,17V14H3V10H10V7L15,12L10,17M10,2H20A2,2 0 0,1 22,4V20A2,2 0 0,1 20,22H10A2,2 0 0,1 8,20V18H10V20H20V4H10V6H8V4A2,2 0 0,1 10,2Z" />
+                </svg>
+            </a>
+            <a class="btn_user registration" href="{% url 'users:registration' %}">
+                <span>Регистрация</span>
+                <svg class="btn-icon" viewBox="0 0 24 24">
+                    <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+                </svg>
+            </a>
+        </div>
+    {% endif %}
+    </div>
+</div>
