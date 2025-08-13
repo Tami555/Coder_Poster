@@ -1,0 +1,89 @@
+.error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 2rem;
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.error-content {
+    max-width: 600px;
+    padding: 2rem;
+    border-radius: 16px;
+    background: rgba(30, 31, 38, 0.8);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.error-image {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 0 10px rgba(173, 255, 47, 0.4));
+    transition: transform 0.3s ease;
+}
+
+.error-image:hover {
+    transform: scale(1.05) rotate(-5deg);
+}
+
+.error-code {
+    font-size: 3rem;
+    color: #ADFF2F;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 15px rgba(173, 255, 47, 0.5);
+}
+
+.error-message {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.error-description {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #aaa;
+    line-height: 1.6;
+}
+
+.home-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, rgba(173, 255, 47, 0.2), rgba(173, 255, 47, 0.1));
+    color: #ADFF2F;
+    border: 1px solid #ADFF2F;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.home-button:hover {
+    background: linear-gradient(135deg, rgba(173, 255, 47, 0.3), rgba(173, 255, 47, 0.2));
+    box-shadow: 0 0 15px rgba(173, 255, 47, 0.3);
+    transform: translateY(-2px);
+}
+
+.home-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(173, 255, 47, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.home-button:hover::after {
+    left: 100%;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

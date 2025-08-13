@@ -23,6 +23,7 @@ from django.views.decorators.cache import cache_page
 from . import settings
 from django.contrib.sitemaps.views import sitemap
 from posts.sitemaps import PostsMap, CategoryMap, TagsMap
+from posts.views import error_404, error_403, error_413, error_500
 
 sitemaps = {'posts': PostsMap, 'category': CategoryMap, 'tags': TagsMap}
 urlpatterns = [
@@ -37,3 +38,7 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 admin.site.site_header = 'Админка Coder-Poster'
+handler404 = error_404
+handler403 = error_403
+handler413 = error_413
+handler500 = error_500

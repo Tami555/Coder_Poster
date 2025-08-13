@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.db.models import Prefetch
-from django.http import HttpRequest, HttpResponse, Http404, HttpResponseForbidden
+from django.http import HttpRequest, HttpResponse, Http404, HttpResponseForbidden, HttpResponseNotFound, HttpResponseServerError
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -140,3 +140,43 @@ class DeletePost(DataFormMixin, PermissionRequiredMixin, LoginRequiredMixin, Del
 
     def get_success_url(self):
         return reverse('users:profile', args=[self.request.user.pk])
+
+
+def error_404(request: HttpRequest, exception):
+    context = {
+        'status_code': '404 Not Found',
+        'error_message': 'Ничего не найдено!!',
+        'error_image': 'images/er404.png',
+        'error_description': 'Эта страница пока не существует... Еще. Может быть, она появится в следующем релизе. А пока, вернитесь на главную'
+    }
+    return HttpResponseNotFound(render(request, 'errors.html', context).content)
+
+
+def error_403(request: HttpRequest, exception):
+    context = {
+        'status_code': '🚫 403 Forbidden️',
+        'error_message': 'Ты не пройдёшь! 🧙‍♂️',
+        'error_image': 'images/er403.png',
+        'error_description': 'У вас нет прав доступа к этой секретной зоне. Вернитесь туда, где вас ждут (на главную страницу)'
+    }
+    return HttpResponseForbidden(render(request, 'errors.html', context).content)
+
+
+def error_413(request: HttpRequest, exception):
+    context = {
+        'status_code': '🐘 413 Payload Too Large',
+        'error_message': 'Ого, ты что, целый Docker-образ залил?!️',
+        'error_image': 'images/er413.png',
+        'error_description': "Твой запрос весит больше, чем документация к PHP.\n Попробуй ужать его, как node_modules в продакшене."
+    }
+    return HttpResponse(render(request, 'errors.html', context).content, status=413)
+
+
+def error_500(request: HttpRequest, exception):
+    context = {
+        'status_code': '500 Internal Server Error',
+        'error_message': "Сервер ушёл в бесконечный цикл раздумий 🤖💭",
+        'error_image': 'images/er500.png',
+        'error_description': "Мы уже разбираемся — как обычно, это был кривой запрос к БД.\nПопей кофе ☕, мы скоро всё починим (нет)."
+    }
+    return HttpResponseServerError(render(request, 'errors.html', context).content)

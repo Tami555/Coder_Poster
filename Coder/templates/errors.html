@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block headstyle %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/errors.css'%}">
+{% endblock %}
+{% block content %}
+<div class="error-container">
+    <div class="error-content">
+        <img src="{% static error_image %}" alt="Error illustration" class="error-image"/>
+        <h1 class="error-code">{{ status_code }}</h1>
+        <h2 class="error-message">{{ error_message }}</h2>
+        <p class="error-description">{{error_description}}</p>
+        <a href="{% url 'all_posts' %}" class="home-button">
+            ← Вернуться в безопасное место
+        </a>
+    </div>
+</div>
+{% endblock %}
