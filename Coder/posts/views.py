@@ -172,7 +172,7 @@ def error_413(request: HttpRequest, exception):
     return HttpResponse(render(request, 'errors.html', context).content, status=413)
 
 
-def error_500(request: HttpRequest, exception):
+def error_500(request: HttpRequest):
     context = {
         'status_code': '500 Internal Server Error',
         'error_message': "Сервер ушёл в бесконечный цикл раздумий 🤖💭",
