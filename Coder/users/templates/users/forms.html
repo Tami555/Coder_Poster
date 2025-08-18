@@ -17,6 +17,14 @@
                 {{ form.non_field_errors }}
             </div>
 
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="form-errors">{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
             {% for f in form %}
                 <div class="form-field">
                     <label for="{{f.id_for_label}}" class="form-label">{{f.label}}</label>
