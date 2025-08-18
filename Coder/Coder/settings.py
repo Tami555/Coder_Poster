@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG') == 'True'
 
 
-ALLOWED_HOSTS = ["127.0.0.1", 'localhost']
+ALLOWED_HOSTS = ["127.0.0.1", 'localhost',]
 INTERNAL_IPS = ["127.0.0.1",]
 
 # Application definition
@@ -103,9 +103,6 @@ CACHES = {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
         "LOCATION": "redis://127.0.0.1:6379",
     }
-    # "default": {
-    #     "BACKEND": "django.core.cache.backends.dummy.DummyCache",
-    # }
 }
 
 # Password validation
@@ -154,6 +151,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
 
 AUTHENTICATION_BACKENDS = ['social_core.backends.github.GithubOAuth2',
+                           'social_core.backends.google.GoogleOAuth2',
                            'users.backends.EmailBackend',
                            # 'django.core.cache.backends.redis.RedisCache'
                            # 'django.contrib.auth.backends.ModelBackend',
@@ -164,8 +162,11 @@ LOGIN_REDIRECT_URL = '/posts'
 # Github
 SOCIAL_AUTH_GITHUB_KEY = os.getenv('GITHUB_AUTH_KEY')
 SOCIAL_AUTH_GITHUB_SECRET = os.getenv('GITHUB_AUTH_SECRET')
-
 SOCIAL_AUTH_GITHUB_SCOPE = ['user:email']
+
+# Google
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv('AUTH_GOOGLE_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv('AUTH_GOOGLE_SECRET')
 
 # Настройки почты для mail.ru
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
