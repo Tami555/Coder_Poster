@@ -1,3 +1,4 @@
+from django.contrib.auth.models import Group
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
@@ -29,3 +30,9 @@ def associate_by_email(backend, details, user=None, *args, **kwargs):
                 messages.error(kwargs['request'], "Аккаунт с такой почтой уже зарегистрирован. Войдите, используя форму регистрации, или используйте другую почту для входа через Google.")
                 return redirect(reverse('users:login'))
     return None
+
+
+def social_group(backend, user, response, *args, **kwargs):
+    gr = Group.objects.filter(name='social')
+    if len(gr):
+        user.groups.add(gr[0])
