@@ -18,15 +18,15 @@
             {% endfor %}
         </div>
         {% endcache %}
-<!--        <input class="links_block search" placeholder="поиск">-->
+    <input class="links_block search" placeholder="поиск" id="search_line">
     </div>
 
     <div class="user_block">
         <div class="menu_btn_block">
             <div class="btn_round" id="btn_get_search">
-                <img src="{% static 'posts/images/search.png'%}">
+                <img class="search-icon" src="{% static 'posts/images/search.png'%}">
+                <img class="hide-search-icon" src="{% static 'posts/images/hide_search.png'%}">
             </div>
-
             {% if perms.posts.add_post %}
             <a class="btn_round" href="{% url 'add_post' %}">
                 <img src="{% static 'posts/images/add_post.png'%}">
@@ -56,4 +56,5 @@
         </div>
     {% endif %}
     </div>
+    <script src="{% static 'posts/js/search_js.js'%}"></script>
 </div>

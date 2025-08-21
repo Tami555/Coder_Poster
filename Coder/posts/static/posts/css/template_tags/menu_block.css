@@ -10,6 +10,7 @@
     color: rgb(15, 16, 22);
     font-weight: 700;
     background-color: #ADFF2F;
+    overflow: hidden;
 }
 .logo{
     display: flex;
@@ -38,6 +39,7 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
+    position: relative;
 }
 
 .links_block{
@@ -266,4 +268,42 @@
 .btn_round:hover{
     transform: scale(1.07);
     box-shadow: 0px 0px 5px 1.5px black;
+}
+/* Логика появления поиска */
+.links_block.search {
+    position: absolute;
+    top: 0;
+    right: -100%;
+    /* min-width: 1000px; */
+    background: white;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    z-index: 100;
+}
+
+.links_block.search.active {
+    right: 0; /* Появляется */
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Затемнение фона при активном поиске */
+.links_block.search.active ~ .block_category,
+.links_block.search.active ~ .block_tags {
+    opacity: 0.3;
+    pointer-events: none; /* Блокируем клики */
+}
+
+/* Иконка крестика */
+.btn_round img.hide-search-icon {
+    display: none;
+}
+
+.btn_round.active img.search-icon {
+    display: none;
+}
+
+.btn_round.active img.hide-search-icon {
+    display: block;
 }
