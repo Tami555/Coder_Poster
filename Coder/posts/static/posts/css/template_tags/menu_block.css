@@ -110,7 +110,11 @@
 }
 
 .user_block {
-    margin: 20px 0;
+    /* margin: 20px 0; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
 }
 
 .username {
@@ -233,4 +237,33 @@
     align-items: center;
     justify-content: center;
     gap: 30px;
+}
+
+/* Поиск  и все для него*/
+.menu_btn_block{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn_round{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: #ffffff;
+    cursor: pointer;
+    border-radius: 100%;
+    transition: all 0.5s;
+}
+.btn_round img{
+    width: 37px;
+    height: 37px;
+}
+.btn_round:hover{
+    transform: scale(1.07);
+    box-shadow: 0px 0px 5px 1.5px black;
 }
