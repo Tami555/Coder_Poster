@@ -6,6 +6,7 @@ urlpatterns = [
     path('home-page/', views.main_page, name='home'),
     path('', views.AllPosts.as_view(), name='all_posts'),
     path('posts', cache_page(200)(views.AllPosts.as_view()), name='posts'),
+    path('posts/search/<str:search>/', views.PostsBySearch.as_view(), name='search_posts'),
     path('posts/tags/<slug:slug_tag>', views.PostsByTag.as_view(), name='post_by_tags'),
     path('posts/category/<slug:slug_category>', views.PostsByCategory.as_view(), name='post_by_category'),
     path('posts/<slug:slug_post>/', views.OnePost.as_view(), name='post_by_slug'),

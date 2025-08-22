@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.exceptions import PermissionDenied
-from django.db.models import Prefetch
+from django.db.models import Prefetch, Q
 from django.http import HttpRequest, HttpResponse, Http404, HttpResponseForbidden, HttpResponseNotFound, HttpResponseServerError
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
@@ -23,6 +23,22 @@ class AllPosts(ListView):
 
     def get_queryset(self):
         return Post.objects.all().select_related('category').prefetch_related('tags').order_by('-data_update')
+
+
+class PostsBySearch(ListView):
+    template_name = 'posts/posts_page.html'
+    context_object_name = 'posts'
+    search = ''
+
+    def get_queryset(self):
+        self.search = self.kwargs['search']
+        return Post.objects.filter(Q(title__icontains=self.search) | Q(description__icontains=self.search))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Посты | {self.search}'
+        context['title_type'] = self.search
+        return context
 
 
 class PostsByTag(ListView):

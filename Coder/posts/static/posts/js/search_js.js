@@ -24,6 +24,32 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
+        // Обработка нажатия Enter в поле поиска
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Функция выполнения поиска
+        function performSearch() {
+            const searchTerm = searchInput.value.trim();
+
+            if (searchTerm) {
+                // Кодируем поисковый запрос для URL
+                const encodedSearchTerm = encodeURIComponent(searchTerm);
+
+                // Формируем URL и перенаправляем
+                const searchUrl = `/posts/search/${encodedSearchTerm}/`;
+                window.location.href = searchUrl;
+
+                // Очищаем поле и закрываем поиск (опционально)
+                searchInput.value = '';
+                searchBlock.classList.remove('active');
+                searchBtn.classList.remove('active');
+            }
+        }
+
         // Закрытие по клику вне области
         document.addEventListener('click', function(e) {
             if (searchBlock.classList.contains('active') &&
