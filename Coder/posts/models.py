@@ -15,6 +15,12 @@ def create_slug_ru_to_eng(slug):
 
 
 class Post(models.Model):
+
+    class Status(models.TextChoices):
+        CHECK = ('check', 'На проверке')
+        APPROVED = ('approved', 'одобрено')
+        BLOCKED = ('blocked', 'заблокировано')
+
     slug = models.SlugField(max_length=255, unique=True, db_index=True)
     title = models.CharField(max_length=255, verbose_name='Название')
     description = models.CharField(max_length=350, verbose_name='Краткое описание')
@@ -22,6 +28,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to='posts_image', verbose_name='Изображение')
     data_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     data_update = models.DateTimeField(auto_now=True, verbose_name='Дата последнего изменения')
+    status = models.TextField(choices=Status.choices, default=Status.CHECK)
 
     # Связь с моделями
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, blank=True, null=True, related_name='posts')

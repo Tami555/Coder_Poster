@@ -9,6 +9,8 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from posts.models import Post, Tags, Category
 from .forms import AddPostForm
 from users.utils import DataFormMixin
+# задачи celery
+from .tasks import check_correct_post
 
 
 def main_page(request: HttpRequest):
@@ -22,7 +24,8 @@ class AllPosts(ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        return Post.objects.all().select_related('category').prefetch_related('tags').order_by('-data_update')
+        return Post.objects.filter(Q(coder_id=self.request.user.id) | Q(status=Post.Status.APPROVED)).select_related(
+            'category').prefetch_related('tags').order_by('-data_update')
 
 
 class PostsBySearch(ListView):
@@ -32,7 +35,8 @@ class PostsBySearch(ListView):
 
     def get_queryset(self):
         self.search = self.kwargs['search']
-        return Post.objects.filter(Q(title__icontains=self.search) | Q(description__icontains=self.search))
+        return Post.objects.filter(Q(title__icontains=self.search) | Q(description__icontains=self.search)
+                                   & Q(status=Post.Status.APPROVED))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -50,7 +54,7 @@ class PostsByTag(ListView):
     def get_queryset(self):
         tag = Tags.objects.get(slug=self.kwargs['slug_tag'])
         self.tag_title = tag.title
-        return tag.posts.all().select_related('category', 'coder').prefetch_related('tags')
+        return tag.posts.filter(status=Post.Status.APPROVED).select_related('category', 'coder').prefetch_related('tags')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -68,7 +72,7 @@ class PostsByCategory(ListView):
     def get_queryset(self):
         cat = Category.objects.get(slug=self.kwargs['slug_category'])
         self.category_title = cat.title
-        return cat.posts.all().select_related('category').prefetch_related('tags')
+        return cat.posts.filter(status=Post.Status.APPROVED).select_related('category').prefetch_related('tags')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -83,11 +87,10 @@ class OnePost(DetailView):
     slug_url_kwarg = 'slug_post'
 
     def get_object(self, queryset=None):
-        post = Post.objects.filter(
-            slug=self.kwargs['slug_post']
+        post = Post.objects.filter(slug=self.kwargs['slug_post']
         ).select_related('category', 'coder').prefetch_related(Prefetch('tags', queryset=Tags.objects.only('title', 'slug'))).first()
 
-        if not post:
+        if not post or (post.status != Post.Status.APPROVED and post.coder_id != self.request.user.pk):
             raise Http404("Post not found")
         return post
 
@@ -106,6 +109,8 @@ class AddPost(DataFormMixin, PermissionRequiredMixin, LoginRequiredMixin, Create
     def form_valid(self, form):
         post = form.save(commit=False)
         post.coder = self.request.user
+        post.save()
+        check_correct_post.apply_async((post.pk, post.description), countdown=60)
         return super().form_valid(form)
 
 
@@ -123,7 +128,7 @@ class EditPost(DataFormMixin, LoginRequiredMixin, PermissionRequiredMixin, Updat
     def get_object(self, queryset=None):
         post = Post.objects.get(slug=self.kwargs['slug_post'])
         if post:
-            if post.coder == self.request.user:
+            if post.coder == self.request.user and post.status != Post.Status.CHECK:
                 return post
             else:
                 raise PermissionDenied()
@@ -147,7 +152,7 @@ class DeletePost(DataFormMixin, PermissionRequiredMixin, LoginRequiredMixin, Del
     def get_object(self, queryset=None):
         post = Post.objects.get(slug=self.kwargs['slug_post'])
         if post:
-            if post.coder == self.request.user:
+            if post.coder == self.request.user and post.status != Post.Status.CHECK:
                 return post
             else:
                 raise PermissionDenied()

@@ -16,7 +16,13 @@
     <div class="blocks_posts">
         {% if posts|length %}
         {% for p in posts %}
+            {% if p.status == 'approved' %}
             <div class="block_post">
+            {% elif p.status == 'blocked' %}
+            <div class="block_post block_post_blocked">
+            {% else %}
+            <div class="block_post block_post_check">
+            {% endif %}
                 <a href="{{p.get_absolute_url}}">
                     <img src="{{p.image.url}}">
                 <div class="block_infa">
@@ -32,6 +38,11 @@
                     </div>
                 </div>
                 </a>
+                {% if p.status == 'blocked'%}
+                     <a href="{% url 'edit_post' p.slug %}" class="edit_btn">
+                        Редактировать
+                    </a>
+                {%endif%}
             </div>
         {% endfor %}
         {% else %}

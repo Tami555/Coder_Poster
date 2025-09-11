@@ -50,18 +50,20 @@
     margin: 40px;
     gap: 30px;
     transition: transform 0.5s ease;
+    position: relative; /* Добавляем для абсолютного позиционирования */
 }
 .block_post:hover{
     transform: translateY(-5px);
     box-shadow: 0 8px 20px #ADFF2F;
 }
 .block_post img {
-    width: 350px;
+    width: 380px;
     height: 300px;
     border-radius: 40px 0px 0px 40px;
 }
 
 .block_infa{
+    width: 550px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -77,8 +79,144 @@
 .block_infa p{
     font-size: 15px;
     font-weight: 300;
+} 
+
+/* Пост на проверке - синий с анимацией */
+.block_post_check {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+    border: 2px solid #17a2b8;
 }
 
+.block_post_check:hover {
+    box-shadow: 0 8px 20px rgba(23, 162, 184, 0.4);
+}
+
+/* Анимация грузилки для поста на проверке */
+.block_post_check::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #17a2b8;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 10;
+}
+
+/* Текст "На проверке" */
+.block_post_check::after {
+    content: 'На проверке';
+    position: absolute;
+    top: 40px;
+    right: 15px;
+    font-size: 12px;
+    color: #17a2b8;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 3px 10px;
+    border-radius: 12px;
+    z-index: 10;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Заблокированный пост - красный с прозрачностью */
+.block_post_blocked {
+    background: linear-gradient(135deg, #bc6666 0%, #7d1818 100%); 
+    border: 1px solid #dc3545;      
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    opacity: 0.95;                
+    transition: all 0.3s ease-in-out;
+    color: white;                   
+    text-align: center;    
+}
+
+.block_post_blocked:hover {
+    box-shadow: 0 8px 20px rgba(220, 53, 69, 0.5);
+    opacity: 1;
+    transform: translateY(-3px);   
+}
+.block_post_blocked .block_tag{
+    background-color:#ee2034;
+}
+
+/* Текст "Заблокировано" для заблокированных постов */
+.block_post_blocked::after {
+    content: 'Заблокировано';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 12px;
+    color: #dc3546;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 3px 10px;
+    border-radius: 12px;
+    z-index: 10;
+}
+
+/* Кнопка редактирования для заблокированных постов */
+.block_post_blocked .edit_btn {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    padding: 8px 16px;
+    background: #dc3546;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.block_post_blocked .edit_btn:hover {
+    background: #c82333;
+    transform: scale(1.05);
+}
+
+/* Затемнение изображения для неодобренных постов */
+.block_post_check img,
+.block_post_blocked img {
+    opacity: 0.7;
+    filter: grayscale(30%);
+}
+
+/* Адаптивность */
+@media (max-width: 1000px) {
+    .block_post {
+        width: 90%;
+        flex-direction: column;
+        height: auto;
+        text-align: center;
+    }
+    
+    .block_post img {
+        width: 100%;
+        height: 200px;
+        border-radius: 40px 40px 0 0;
+    }
+
+    /* Адаптация для мобильных */
+    .block_post_check::before,
+    .block_post_check::after,
+    .block_post_blocked::after,
+    .block_post_blocked .edit_btn {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin: 10px auto;
+        display: block;
+        text-align: center;
+    }
+}
 .block_maybe_like{
     display: flex;
     flex-direction: row;

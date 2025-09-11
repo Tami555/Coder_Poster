@@ -5,7 +5,6 @@
     <link type="text/css" rel="stylesheet" href="{% static 'posts/css/one_post_page.css' %}">
 {% endblock %}
 
-
 {% block content %}
     <div class="main_block">
         <div class="post-header">
@@ -40,6 +39,20 @@
                     <span class="meta-label">Категория:</span>
                     <a href="{{post.category.get_absolute_url}}" class="category-link">{{post.category.title}}</a>
                 </div>
+
+                <!-- БЛОК СТАТУСА -->
+                <div class="meta-item">
+                    <span class="meta-label">Статус:</span>
+                    <span class="status-badge
+                        {% if post.status == 'approved' %}status-approved{% endif %}
+                        {% if post.status == 'blocked' %}status-blocked{% endif %}
+                        {% if post.status == 'check' %}status-check{% endif %}">
+                        {% if post.status == 'approved' %}Опубликован{% endif %}
+                        {% if post.status == 'blocked' %}Заблокирован{% endif %}
+                        {% if post.status == 'check' %}На проверке{% endif %}
+                    </span>
+                </div>
+
                 <div class="tags-container">
                     {% for t in post.tags.all %}
                         <a href="{{t.get_absolute_url}}" class="tag-link">{{t.title}}</a>
@@ -47,7 +60,7 @@
                 </div>
             </div>
 
-            {% if user.pk == post.coder.pk %}
+            {% if user.pk == post.coder.pk and post.status != 'check' %}
                 <div class="post-actions">
                     <a class="post-action-btn edit-btn" href="{% url 'edit_post' post.slug %}">
                         <svg class="btn-icon" viewBox="0 0 24 24">

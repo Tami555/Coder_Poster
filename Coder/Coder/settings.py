@@ -197,3 +197,13 @@ DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 SERVER_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 
 SITE_ID = 1
+
+# CELERY + RabbitMQ
+RABBITMQ_HOST = 'localhost'
+RABBITMQ_PORT = '5672'
+CELERY_BROKER_URL = f'amqp://guest:guest@{RABBITMQ_HOST}:{RABBITMQ_PORT}//'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'  # Используем БД Redis для хранения результатов
+CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
