@@ -29,6 +29,7 @@ class Post(models.Model):
     data_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     data_update = models.DateTimeField(auto_now=True, verbose_name='Дата последнего изменения')
     status = models.TextField(choices=Status.choices, default=Status.CHECK)
+    moderator_comment = models.CharField(max_length=255, blank=True, default='')
 
     # Связь с моделями
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, blank=True, null=True, related_name='posts')

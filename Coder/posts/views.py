@@ -35,7 +35,7 @@ class PostsBySearch(ListView):
 
     def get_queryset(self):
         self.search = self.kwargs['search']
-        return Post.objects.filter(Q(title__icontains=self.search) | Q(description__icontains=self.search)
+        return Post.objects.filter((Q(title__icontains=self.search) | Q(description__icontains=self.search))
                                    & Q(status=Post.Status.APPROVED))
 
     def get_context_data(self, **kwargs):
@@ -110,7 +110,7 @@ class AddPost(DataFormMixin, PermissionRequiredMixin, LoginRequiredMixin, Create
         post = form.save(commit=False)
         post.coder = self.request.user
         post.save()
-        check_correct_post.apply_async((post.pk, post.description), countdown=60)
+        check_correct_post.apply_async((post.pk, post.title, post.description, post.content), countdown=10)
         return super().form_valid(form)
 
 
@@ -138,6 +138,24 @@ class EditPost(DataFormMixin, LoginRequiredMixin, PermissionRequiredMixin, Updat
     def get_success_url(self):
         # return reverse('users:profile', args=self.request.user.pk)
         return reverse('all_posts')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        post = self.get_object()
+
+        # Добавляем информацию о блокировке в контекст
+        if post.status == Post.Status.BLOCKED:
+            context['block_reason'] = post.moderator_comment
+            context['is_blocked'] = True
+        return self.get_context_mixin(context)
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.status = Post.Status.CHECK
+        post.moderator_comment = ''
+        post.save()
+        check_correct_post.apply_async((post.pk, post.title, post.description, post.content), countdown=10)
+        return super().form_valid(form)
 
 
 class DeletePost(DataFormMixin, PermissionRequiredMixin, LoginRequiredMixin, DeleteView):

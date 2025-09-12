@@ -10,14 +10,18 @@
 }
 
 .form-title {
-    color: #ADFF2F;
     font-family: 'Courier New', monospace;
     font-size: 2.2rem;
     text-align: center;
     margin-bottom: 30px;
     position: relative;
 }
-
+.form-title-approved{
+    color: #ADFF2F;
+}
+.form-title-blocked{
+    color: red;
+}
 .form-title::after {
     content: '';
     position: absolute;
@@ -27,6 +31,9 @@
     width: 100px;
     height: 3px;
     background: linear-gradient(90deg, transparent, #ADFF2F, transparent);
+}
+.form-title-blocked::after{
+    background: linear-gradient(90deg, transparent, red, transparent);
 }
 
 .custom-form {
@@ -288,8 +295,6 @@
     }
 }
 
-
-
 /* Анимация загрузки */
 @keyframes pulse {
     0% { box-shadow: 0 0 0 0 rgba(173, 255, 47, 0.7); }
@@ -300,6 +305,33 @@
 .submit-btn.loading {
     animation: pulse 2s infinite;
     pointer-events: none;
+}
+ /* Стили для заблокированных полей */
+
+.blocked-alert {
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(255, 107, 107, 0.1));
+    border: 1px solid #ff6b6b;
+    color: #ff6b6b;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-family: 'Courier New', monospace;
+}
+
+.blocked-alert h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+}
+
+.blocked-alert p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.warning-icon {
+    display: inline-block;
+    margin-right: 10px;
+    font-weight: bold;
 }
 
 /* Адаптивность */
