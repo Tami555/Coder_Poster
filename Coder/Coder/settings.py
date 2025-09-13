@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG') == 'True'
 
 
-ALLOWED_HOSTS = ["127.0.0.1", 'localhost',]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', 'django']
 INTERNAL_IPS = ["127.0.0.1",]
 
 # Application definition
@@ -90,8 +90,8 @@ DATABASES = {
         'NAME': os.getenv('DB_NAME'),
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT'),
+        'HOST': os.getenv('DB_HOST', 'postgresql'),
+        'PORT': os.getenv('DB_PORT', '5432'),
     }
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
@@ -101,7 +101,8 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379",
+        "LOCATION": f"redis://{os.getenv('REDIS_HOST')}:{os.getenv('REDIS_PORT')}/0",
+        # "LOCATION": "redis://redis:6379/0"
     }
 }
 
@@ -199,10 +200,8 @@ SERVER_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 SITE_ID = 1
 
 # CELERY + RabbitMQ
-RABBITMQ_HOST = 'localhost'
-RABBITMQ_PORT = '5672'
-CELERY_BROKER_URL = f'amqp://guest:guest@{RABBITMQ_HOST}:{RABBITMQ_PORT}//'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'  # Используем БД Redis для хранения результатов
+CELERY_BROKER_URL = f"amqp://guest:guest@{os.getenv('RABBITMQ_HOST')}:{os.getenv('RABBITMQ_PORT')}//"
+CELERY_RESULT_BACKEND = f"redis://{os.getenv('REDIS_HOST')}:{os.getenv('REDIS_PORT')}/1"  # Используем БД Redis для хранения результатов
 CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'

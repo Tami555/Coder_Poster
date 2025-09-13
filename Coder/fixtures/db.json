@@ -442,6 +442,737 @@
   }
 },
 {
+  "model": "admin.logentry",
+  "pk": 35,
+  "fields": {
+    "action_time": "2025-08-18T11:16:35.057Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "1",
+    "object_repr": "lublu-coffee",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 36,
+  "fields": {
+    "action_time": "2025-08-18T11:19:35.930Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "4",
+    "object_repr": "lublu-coffee",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 37,
+  "fields": {
+    "action_time": "2025-08-18T22:03:17.364Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "28",
+    "object_repr": "PostgreSQL",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 38,
+  "fields": {
+    "action_time": "2025-08-18T22:03:32.797Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "29",
+    "object_repr": "SQLite",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 39,
+  "fields": {
+    "action_time": "2025-08-18T22:03:45.789Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "30",
+    "object_repr": "MySQL",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 40,
+  "fields": {
+    "action_time": "2025-08-18T22:04:03.228Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "31",
+    "object_repr": "MS-SQL",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 41,
+  "fields": {
+    "action_time": "2025-08-18T22:04:18.664Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "32",
+    "object_repr": "Ruby",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 42,
+  "fields": {
+    "action_time": "2025-08-18T22:05:10.625Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "14",
+    "object_repr": "PostgreSQL: база данных, которая переживёт твой код 🐘💻",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 43,
+  "fields": {
+    "action_time": "2025-08-20T22:47:47.654Z",
+    "user": 1,
+    "content_type": 3,
+    "object_id": "2",
+    "object_repr": "social_auth",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 44,
+  "fields": {
+    "action_time": "2025-08-20T22:48:27.622Z",
+    "user": 1,
+    "content_type": 3,
+    "object_id": "2",
+    "object_repr": "social",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 45,
+  "fields": {
+    "action_time": "2025-09-11T22:50:29.830Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "33",
+    "object_repr": "Redis",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 46,
+  "fields": {
+    "action_time": "2025-09-11T22:50:53.181Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "34",
+    "object_repr": "RabbitMQ",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 47,
+  "fields": {
+    "action_time": "2025-09-11T22:51:20.592Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "35",
+    "object_repr": "Kafka",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 48,
+  "fields": {
+    "action_time": "2025-09-11T22:51:37.025Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "36",
+    "object_repr": "Celery",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 1,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 1,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 1,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 1,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 2,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 2,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 2,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 2,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 3,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 3,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 3,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 3,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 4,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 4,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 4,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 4,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 5,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 5,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 5,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 5,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add association",
+    "content_type": 6,
+    "codename": "add_association"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change association",
+    "content_type": 6,
+    "codename": "change_association"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete association",
+    "content_type": 6,
+    "codename": "delete_association"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view association",
+    "content_type": 6,
+    "codename": "view_association"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add code",
+    "content_type": 7,
+    "codename": "add_code"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change code",
+    "content_type": 7,
+    "codename": "change_code"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete code",
+    "content_type": 7,
+    "codename": "delete_code"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view code",
+    "content_type": 7,
+    "codename": "view_code"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add nonce",
+    "content_type": 8,
+    "codename": "add_nonce"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change nonce",
+    "content_type": 8,
+    "codename": "change_nonce"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete nonce",
+    "content_type": 8,
+    "codename": "delete_nonce"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view nonce",
+    "content_type": 8,
+    "codename": "view_nonce"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add user social auth",
+    "content_type": 9,
+    "codename": "add_usersocialauth"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change user social auth",
+    "content_type": 9,
+    "codename": "change_usersocialauth"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete user social auth",
+    "content_type": 9,
+    "codename": "delete_usersocialauth"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view user social auth",
+    "content_type": 9,
+    "codename": "view_usersocialauth"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add partial",
+    "content_type": 10,
+    "codename": "add_partial"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change partial",
+    "content_type": 10,
+    "codename": "change_partial"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete partial",
+    "content_type": 10,
+    "codename": "delete_partial"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view partial",
+    "content_type": 10,
+    "codename": "view_partial"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add Категория",
+    "content_type": 11,
+    "codename": "add_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change Категория",
+    "content_type": 11,
+    "codename": "change_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete Категория",
+    "content_type": 11,
+    "codename": "delete_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view Категория",
+    "content_type": 11,
+    "codename": "view_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can add Тег",
+    "content_type": 12,
+    "codename": "add_tags"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can change Тег",
+    "content_type": 12,
+    "codename": "change_tags"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Can delete Тег",
+    "content_type": 12,
+    "codename": "delete_tags"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 48,
+  "fields": {
+    "name": "Can view Тег",
+    "content_type": 12,
+    "codename": "view_tags"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 49,
+  "fields": {
+    "name": "Can add Пост",
+    "content_type": 13,
+    "codename": "add_post"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 50,
+  "fields": {
+    "name": "Can change Пост",
+    "content_type": 13,
+    "codename": "change_post"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 51,
+  "fields": {
+    "name": "Can delete Пост",
+    "content_type": 13,
+    "codename": "delete_post"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 52,
+  "fields": {
+    "name": "Can view Пост",
+    "content_type": 13,
+    "codename": "view_post"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 53,
+  "fields": {
+    "name": "Can add Пользователь",
+    "content_type": 14,
+    "codename": "add_coder"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 54,
+  "fields": {
+    "name": "Can change Пользователь",
+    "content_type": 14,
+    "codename": "change_coder"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 55,
+  "fields": {
+    "name": "Can delete Пользователь",
+    "content_type": 14,
+    "codename": "delete_coder"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 56,
+  "fields": {
+    "name": "Can view Пользователь",
+    "content_type": 14,
+    "codename": "view_coder"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 57,
+  "fields": {
+    "name": "Can add site",
+    "content_type": 15,
+    "codename": "add_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 58,
+  "fields": {
+    "name": "Can change site",
+    "content_type": 15,
+    "codename": "change_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 59,
+  "fields": {
+    "name": "Can delete site",
+    "content_type": 15,
+    "codename": "delete_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 60,
+  "fields": {
+    "name": "Can view site",
+    "content_type": 15,
+    "codename": "view_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 61,
+  "fields": {
+    "name": "социальная регистрация",
+    "content_type": 14,
+    "codename": "social_auth"
+  }
+},
+{
   "model": "auth.group",
   "pk": 1,
   "fields": {
@@ -455,27 +1186,21 @@
   }
 },
 {
-  "model": "sessions.session",
-  "pk": "bz1rwxgts4974fjg3nh181qk1nifb62b",
+  "model": "auth.group",
+  "pk": 2,
   "fields": {
-    "session_data": ".eJxVi0sOwjAMBe_iNaraODExSyTOETl2olR8FqRdIe4OlbqA5byZ94Ik69LS2sszzQYnmODwu2XRa3lsYsM-7NyHy13m23m3f5cmvX17x0xFxyBKLJoj-qMvLhpZxELRI0mgaujHoFwnJ8pmlTVrJQ4o8P4AjxkzBw:1ufgRh:1Xx0unRHjg3w0ch7Xfa0q-tIbGQCJ6pOUUunLBEVyNE",
-    "expire_date": "2025-08-09T15:04:21.025Z"
+    "name": "social",
+    "permissions": [
+      61
+    ]
   }
 },
 {
-  "model": "sessions.session",
-  "pk": "omyy1mznezrxv3zcm4jjaa726qqaghb6",
+  "model": "sites.site",
+  "pk": 1,
   "fields": {
-    "session_data": ".eJxVjs1qwzAQhN9F52BkydHavRUCIX8EU0qPQittYiUmDpacHErfvartQ3PaZYZvZr7Z2cdmQB2iicTe2PNqD_e63tf5-mO1zT-Ljdg_vny-9C7unL-wBdNmiI0eAvXau4QsXzU09kq3PyN01ptW266nbFZDNvVl6_Ec3xMmXvnGhCbBJwSggktAJ0qZHsVBoLOkQHGSoiSFAqSqJEdAyJXjjk5U2aqQWFpIoXP_GN2aEHXbnf3t38BpC_v5BUYLVzs:1uggkS:a3dOVINVtUCWtj4LyB8xGERHZwEOlsj6YQXeEnafr64",
-    "expire_date": "2025-08-12T09:35:52.209Z"
-  }
-},
-{
-  "model": "sessions.session",
-  "pk": "u0z1nrp9cipuwhl8reqkvgemdutpw4yz",
-  "fields": {
-    "session_data": ".eJxVjs0KwjAQhN8lZykmbZrUm4qICu1BEDyF3TSxwWCxSS-K7278OeheFmb4ZuZOTi52I6oQIRoyI1IUcLuumW_8fFkfVuxax-Ni2DVys9lvXU0mRMEYOzUGMyjXJqT41xD02VxeRui1A690P5jsq4bs05et36-ZJ4z98x2ELsECBKfaCmp0wUstW2lZNa0Ylbm1gMArpLqUXCPnWArbSswrFAWn6XKDKfTb_472EKLy_cldfgZ-tpDHEyRFV0Y:1ugjhH:pRDQS1UQ5NgH7Y7DarYSzSDsBAqFDYhN6K4OnaBSMg4",
-    "expire_date": "2025-08-12T12:44:47.522Z"
+    "domain": "example.com",
+    "name": "example.com"
   }
 },
 {
@@ -489,6 +1214,8 @@
     "image": "/posts_image/django-python.jpg",
     "data_create": "2025-07-24T00:00:00Z",
     "data_update": "2025-07-26T00:00:00Z",
+    "status": "approved",
+    "moderator_comment": "",
     "category": 1,
     "coder": 1,
     "tags": [
@@ -508,6 +1235,8 @@
     "image": "/posts_image/react_js_vs_vie.jpg",
     "data_create": "2025-07-24T00:00:00Z",
     "data_update": "2025-07-26T00:00:00Z",
+    "status": "approved",
+    "moderator_comment": "",
     "category": 2,
     "coder": 1,
     "tags": [
@@ -530,6 +1259,8 @@
     "image": "/posts_image/docker.jpg",
     "data_create": "2025-07-24T00:00:00Z",
     "data_update": "2025-07-26T00:00:00Z",
+    "status": "approved",
+    "moderator_comment": "",
     "category": 5,
     "coder": 3,
     "tags": [
@@ -548,6 +1279,8 @@
     "image": "/posts_image/api.jpg",
     "data_create": "2025-07-24T00:00:00Z",
     "data_update": "2025-07-26T00:00:00Z",
+    "status": "approved",
+    "moderator_comment": "",
     "category": 1,
     "coder": 3,
     "tags": [
@@ -567,6 +1300,8 @@
     "image": "/posts_image/algoritm.png",
     "data_create": "2025-07-24T00:00:00Z",
     "data_update": "2025-07-26T00:00:00Z",
+    "status": "approved",
+    "moderator_comment": "",
     "category": 12,
     "coder": 3,
     "tags": [
@@ -585,6 +1320,8 @@
     "image": "/posts_image/kiberbez.jpg",
     "data_create": "2025-07-24T00:00:00Z",
     "data_update": "2025-07-26T00:00:00Z",
+    "status": "approved",
+    "moderator_comment": "",
     "category": 11,
     "coder": 1,
     "tags": [
@@ -604,6 +1341,8 @@
     "image": "/posts_image/c++.jpg",
     "data_create": "2025-07-25T00:00:00Z",
     "data_update": "2025-07-26T00:00:00Z",
+    "status": "approved",
+    "moderator_comment": "",
     "category": 1,
     "coder": 1,
     "tags": [
@@ -624,6 +1363,8 @@
     "image": "/posts_image/tcp-ip.jpg",
     "data_create": "2025-07-25T00:00:00Z",
     "data_update": "2025-07-26T00:00:00Z",
+    "status": "approved",
+    "moderator_comment": "",
     "category": 17,
     "coder": 1,
     "tags": [
@@ -643,6 +1384,8 @@
     "image": "/posts_image/start_proga.jpg",
     "data_create": "2025-07-25T00:00:00Z",
     "data_update": "2025-07-26T00:00:00Z",
+    "status": "approved",
+    "moderator_comment": "",
     "category": 8,
     "coder": 3,
     "tags": [
@@ -661,6 +1404,8 @@
     "image": "/posts_image/python_lii.jpg",
     "data_create": "2025-07-25T00:00:00Z",
     "data_update": "2025-07-26T11:17:40.037Z",
+    "status": "approved",
+    "moderator_comment": "",
     "category": 1,
     "coder": 1,
     "tags": [
@@ -680,6 +1425,8 @@
     "image": "/posts_image/git.jpg",
     "data_create": "2025-07-25T00:00:00Z",
     "data_update": "2025-07-26T00:00:00Z",
+    "status": "approved",
+    "moderator_comment": "",
     "category": 6,
     "coder": 3,
     "tags": [
@@ -698,6 +1445,8 @@
     "image": "posts_image/java_c.jpg",
     "data_create": "2025-07-26T00:00:00Z",
     "data_update": "2025-07-26T00:00:00Z",
+    "status": "approved",
+    "moderator_comment": "",
     "category": 18,
     "coder": 3,
     "tags": [
@@ -718,12 +1467,102 @@
     "image": "posts_image/linux.jpg",
     "data_create": "2025-07-26T00:00:00Z",
     "data_update": "2025-07-26T00:00:00Z",
+    "status": "approved",
+    "moderator_comment": "",
     "category": 19,
     "coder": 1,
     "tags": [
       24,
       25,
       26
+    ]
+  }
+},
+{
+  "model": "posts.post",
+  "pk": 14,
+  "fields": {
+    "slug": "postgresql-baza-dannyh-kotoraya-perezhivyot-tvoy-kod",
+    "title": "PostgreSQL: база данных, которая переживёт твой код 🐘💻",
+    "description": "PostgreSQL — это не просто база данных, а легенда среди СУБД. Если SQLite — это велосипед, а MySQL — самокат, то PostgreSQL — это космический корабль с открытым исходным кодом. Рассказываем, почему её любят разработчики, как она переваривает JSON лучше, чем твой желудок шаурму, и почему её стоит выбрать для своего проекта.",
+    "content": "PostgreSQL: Швейцарский Нож Мира Данных\r\n\r\nPostgreSQL – это не просто реляционная база данных, это настоящий тяжеловес, который может потягаться с коммерческими гигантами, и при этом остаётся open-source! Она не просто надёжна, она чертовски надёжна, и это подтверждено годами использования в самых разных проектах – от маленьких стартапов до огромных корпораций.\r\n\r\nЧто делает PostgreSQL таким крутым?\r\n\r\n1. Open-Source, Без Компромиссов: Забудь о лицензионных платежах и vendor lock-in. PostgreSQL – это свобода, гибкость и контроль над своими данными.\r\n\r\n2. SQL по Полной Программе: PostgreSQL соответствует стандартам SQL как никто другой. ACID-транзакции, сложные запросы, хранимые процедуры – всё это работает как часы.\r\n\r\n3. Типы Данных, От Которых Голова Кругом: JSON/JSONB, массивы, Hstore, UUID, геометрические типы данных – PostgreSQL поддерживает всё, что только можно представить. Хочешь хранить JSON прямо в базе? Легко! Нужно работать с географическими данными? PostGIS к вашим услугам!\r\n\r\n4. Расширяемость – Это Её Второе Имя: Создавай свои типы данных, функции, операторы и даже языки программирования! PostgreSQL – это как конструктор LEGO, из которого можно собрать всё, что угодно.\r\n\r\n5. Индексы, Которые Ускорят Твою Жизнь: B-tree, GIN, GiST, SP-GiST, BRIN – выбирай индекс под свою задачу, и твои запросы будут летать! Нужно индексировать JSONB? GIN тебе поможет! Работаешь с географическими данными? GiST – твой лучший друг!\r\n\r\n6. Concurrency – Как У Симфонического Оркестра: Многоверсионность (MVCC) позволяет читать данные без блокировок, обеспечивая высокую производительность даже при большом количестве одновременных запросов.\r\n\r\n7. Надёжность – Как У Швейцарских Часов: PostgreSQL славится своей стабильностью и устойчивостью к сбоям. Репликация, резервное копирование и восстановление данных – всё это работает на высшем уровне.\r\n\r\nПочему PostgreSQL – Это Твой Выбор?\r\n\r\n•  Для Стартапов: Гибкость и бесплатность позволяют быстро запускать проекты без больших затрат.\r\n\r\n•  Для Энтерпрайза: Надёжность, масштабируемость и соответствие стандартам делают PostgreSQL идеальным выбором для крупных компаний.\r\n\r\n•  Для Личных Пет-Проектов: Простота использования и богатый функционал позволяют воплощать в жизнь самые смелые идеи.\r\n\r\nВ заключение:\r\n\r\nPostgreSQL – это не просто база данных, это мощный инструмент, который поможет тебе решать самые сложные задачи. Забудь про скучные таблицы, встречай космос возможностей! Попробуй PostgreSQL сегодня, и ты поймёшь, почему её так любят разработчики по всему миру!",
+    "image": "posts_image/maxresdefault.jpg",
+    "data_create": "2025-08-18T22:02:22.444Z",
+    "data_update": "2025-08-18T22:05:10.610Z",
+    "status": "approved",
+    "moderator_comment": "",
+    "category": 5,
+    "coder": 1,
+    "tags": [
+      14,
+      28,
+      29
+    ]
+  }
+},
+{
+  "model": "posts.post",
+  "pk": 15,
+  "fields": {
+    "slug": "kubernetes-dlya-kogo-i-zachem",
+    "title": "Kubernetes: для кого и зачем ?!",
+    "description": "Kubernetes — это мощная платформа для управления контейнерами, позволяющая автоматизировать развертывание, масштабирование и управление приложениями. В этой статье мы рассмотрим основные функции и преимущества Kubernetes, а также его роль в современном DevOps.",
+    "content": "Kubernetes, часто сокращаемый как K8s, представляет собой открытое решение для управления контейнеризованными приложениями. Созданный Google и теперь поддерживаемый Cloud Native Computing Foundation (CNCF), Kubernetes позволяет разработчикам и операционным командам легко развертывать, масштабировать и управлять приложениями в контейнерах.\r\n\r\nОдной из ключевых особенностей Kubernetes является его способность автоматизировать многие рутинные задачи, такие как развертывание новых версий приложений, управление состоянием приложений и автоматическое восстановление после сбоев. Это достигается за счет использования декларативного подхода к конфигурации, где пользователи описывают желаемое состояние системы, а Kubernetes сам заботится о том, чтобы это состояние было достигнуто и поддерживалось.\r\n\r\nKubernetes также предлагает мощные возможности для масштабирования. Вы можете легко увеличить или уменьшить количество работающих экземпляров вашего приложения в зависимости от нагрузки, что делает его идеальным выбором для динамичных облачных сред.\r\n\r\nКроме того, благодаря обширной экосистеме плагинов и интеграций, Kubernetes может работать с различными облачными провайдерами и инструментами CI/CD, что делает его универсальным решением для современных DevOps-практик.\r\n\r\nВ заключение, Kubernetes — это не просто инструмент для управления контейнерами; это целая экосистема, способная значительно упростить жизнь разработчикам и операционным командам, позволяя им сосредоточиться на создании качественных продуктов, а не на решении инфраструктурных проблем. Если вы еще не знакомы с Kubernetes, возможно, пришло время начать изучение этой мощной платформы!",
+    "image": "posts_image/Kubernetes__.png",
+    "data_create": "2025-08-22T16:39:20.365Z",
+    "data_update": "2025-08-22T16:39:20.365Z",
+    "status": "approved",
+    "moderator_comment": "",
+    "category": 6,
+    "coder": 3,
+    "tags": [
+      12,
+      13
+    ]
+  }
+},
+{
+  "model": "posts.post",
+  "pk": 18,
+  "fields": {
+    "slug": "celery-ovosch-ili-moschnyy-instrument-na-python",
+    "title": "Celery – овощ или мощный инструмент на Python 🥬💻?",
+    "description": "Хочешь, чтобы твой Python-код выполнялся в фоне, как ниндзя? Celery – твой верный помощник! Разбираемся, как делегировать рутину и освободить веб-сервер от тяжких дум",
+    "content": "Что такое Celery и зачем он нужен?\r\n\r\nCelery – это мощная и гибкая библиотека Python для асинхронной обработки задач. Представь, что у тебя есть сайт, и кто-то загружает огромный файл. Если ты будешь обрабатывать этот файл в основном потоке, сайт \"зависнет\" для всех пользователей. С Celery ты можешь делегировать обработку файла фоновому процессу, а сайт останется отзывчивым.\r\n\r\nКлючевые концепции:\r\n\r\n•   Задачи: Функции Python, которые Celery должен выполнить асинхронно.\r\n•   Воркеры: Процессы, которые берут задачи из очереди и выполняют их.\r\n•   Брокер сообщений: Посредник между твоим приложением и воркерами. Самые популярные – RabbitMQ и Redis.\r\n•   Бэкенд результатов: Место, где Celery хранит результаты выполненных задач (опционально).\r\n\r\nПростой пример:\r\n-------------------------------\r\nfrom celery import Celery\r\n\r\napp = Celery('tasks', broker='redis://localhost:6379/0')\r\n\r\n@app.task\r\ndef add(x, y):\r\n    return x + y\r\n\r\n# Отправляем задачу в очередь\r\nresult = add.delay(4, 4)\r\n\r\n# ... позже, когда нам понадобится результат:\r\nprint(result.get()) # Выведет 8\r\n\r\n--------------------------------------\r\n\r\nКак это работает?\r\n\r\n1.  Ты определяешь задачу (@app.task).\r\n2.  Вызываешь ее с помощью .delay(). Это отправляет задачу в очередь брокера сообщений (Redis в нашем примере).\r\n3.  Celery-воркер берет задачу из очереди и выполняет ее.\r\n4.  Результат (если есть) сохраняется в бэкенде результатов.\r\n5.  Ты можешь позже получить результат из бэкенда.\r\n\r\nЗачем использовать Celery?\r\n\r\n•   Улучшение производительности: Разгружает веб-сервер от выполнения ресурсоемких операций.\r\n•   Масштабируемость: Легко добавлять больше воркеров для обработки большего количества задач.\r\n•   Надежность: Если воркер упадет, задача останется в очереди и будет выполнена другим воркером.\r\n•   Управление задачами: Celery предоставляет инструменты для мониторинга, повторных попыток и отслеживания прогресса задач.\r\n\r\nКогда использовать Celery?\r\n\r\n•   Отправка email и уведомлений.\r\n•   Обработка изображений и видео.\r\n•   Выполнение сложных расчетов.\r\n•   Сбор статистики и аналитики.\r\n•   Любая задача, которая не требует немедленного ответа от веб-сервера.\r\n\r\nЗаключение:\r\n\r\nCelery – это незаменимый инструмент для любого Python-разработчика, работающего с веб-приложениями, требующими асинхронной обработки задач. Он позволяет сделать твой код более быстрым, надежным и масштабируемым. Так что не тяни кота за хвост, а начинай использовать Celery уже сегодня! 😉",
+    "image": "posts_image/celery.png",
+    "data_create": "2025-09-11T22:45:15.181Z",
+    "data_update": "2025-09-11T22:52:26.869Z",
+    "status": "approved",
+    "moderator_comment": "",
+    "category": 1,
+    "coder": 1,
+    "tags": [
+      1,
+      2,
+      33,
+      34,
+      36
+    ]
+  }
+},
+{
+  "model": "posts.post",
+  "pk": 19,
+  "fields": {
+    "slug": "rabbitmq-svyaznoy-krolik-kotoryy-ne-podvedet",
+    "title": "RabbitMQ – Связной Кролик, Который Не Подведет! 🐇",
+    "description": "Устал от сервисов, которые не могут договориться? RabbitMQ – твой кролик-переговорщик! Разбираемся, как этот брокер сообщений поможет твоим приложениям общаться без скандалов.",
+    "content": "Что такое RabbitMQ и зачем он нужен?\r\n\r\nRabbitMQ – это брокер сообщений, или message broker. Представь себе кролика, который переносит записки между разными частями твоего приложения. Он получает сообщения от одних сервисов и доставляет их другим, гарантируя, что ни одно сообщение не потеряется.\r\n\r\nКлючевые концепции:\r\n\r\n•  Producer (производитель): Сервис, который отправляет сообщения в RabbitMQ.\r\n•  Exchange (обменник): Маршрутизатор, который получает сообщения от производителя и направляет их в очереди.\r\n•  Queue (очередь): Буфер, который хранит сообщения до тех пор, пока потребитель не будет готов их обработать.\r\n•  Consumer (потребитель): Сервис, который получает сообщения из очереди и обрабатывает их.\r\n•  Binding (привязка): Связь между обменником и очередью. Определяет, какие сообщения из обменника попадут в конкретную очередь.\r\n\r\nКак это работает?\r\n\r\n1. Producer отправляет сообщение в Exchange.\r\n2. Exchange, в зависимости от настроек binding, направляет сообщение в одну или несколько очередей.\r\n3. Consumer подключается к очереди и получает сообщения.\r\n\r\nЗачем использовать RabbitMQ?\r\n\r\n•  Асинхронная коммуникация: Позволяет сервисам обмениваться данными без необходимости ждать ответа.\r\n•  Разделение ответственности: Сервисы не зависят друг от друга напрямую, что упрощает разработку и масштабирование.\r\n•  Надежность: RabbitMQ гарантирует доставку сообщений, даже если один из сервисов временно недоступен.\r\n•  Гибкость: Поддерживает разные типы обмена сообщениями (direct, fanout, topic, headers).\r\n\r\nКогда использовать RabbitMQ?\r\n\r\n•  Микросервисные архитектуры.\r\n•  Асинхронная обработка задач (например, с помощью Celery).\r\n•  Обмен данными между различными приложениями.\r\n•  Реализация паттерна \"publish-subscribe\".\r\n\r\nТипы обменников:\r\n\r\n•  Direct: Сообщение доставляется в очередь, у которой binding key точно совпадает с routing key сообщения.\r\n•  Fanout: Сообщение доставляется во все очереди, привязанные к обменнику.\r\n•  Topic: Сообщение доставляется в очереди, у которых binding key соответствует routing key сообщения с использованием wildcard символов (# и *).\r\n•  Headers: Сообщение доставляется в очереди, у которых headers совпадают с headers сообщения.\r\n\r\nПример (упрощенный):\r\n\r\nПредставь, что у тебя есть два сервиса: order_service и notification_service.\r\n\r\n1. order_service отправляет сообщение о новом заказе в RabbitMQ.\r\n2. Exchange order_events (типа fanout) рассылает сообщение во все привязанные очереди.\r\n3. notification_service получает сообщение из своей очереди и отправляет email пользователю.\r\n\r\nЗаключение:\r\n\r\nRabbitMQ – это мощный и универсальный инструмент для построения распределенных систем. Он помогает твоим сервисам общаться друг с другом надежно и эффективно. Не бойся запустить этого кролика в свой проект – он принесет только пользу! 🚀",
+    "image": "posts_image/0834e8671743cda678bdf5e1cda43216.jpg",
+    "data_create": "2025-09-11T22:56:55.036Z",
+    "data_update": "2025-09-11T22:57:55.413Z",
+    "status": "approved",
+    "moderator_comment": "",
+    "category": 15,
+    "coder": 3,
+    "tags": [
+      34,
+      36
     ]
   }
 },
@@ -1096,15 +1935,87 @@
   }
 },
 {
+  "model": "posts.tags",
+  "pk": 28,
+  "fields": {
+    "slug": "postgresql",
+    "title": "PostgreSQL"
+  }
+},
+{
+  "model": "posts.tags",
+  "pk": 29,
+  "fields": {
+    "slug": "sqlite",
+    "title": "SQLite"
+  }
+},
+{
+  "model": "posts.tags",
+  "pk": 30,
+  "fields": {
+    "slug": "mysql",
+    "title": "MySQL"
+  }
+},
+{
+  "model": "posts.tags",
+  "pk": 31,
+  "fields": {
+    "slug": "ms-sql",
+    "title": "MS-SQL"
+  }
+},
+{
+  "model": "posts.tags",
+  "pk": 32,
+  "fields": {
+    "slug": "ruby",
+    "title": "Ruby"
+  }
+},
+{
+  "model": "posts.tags",
+  "pk": 33,
+  "fields": {
+    "slug": "redis",
+    "title": "Redis"
+  }
+},
+{
+  "model": "posts.tags",
+  "pk": 34,
+  "fields": {
+    "slug": "rabbitmq",
+    "title": "RabbitMQ"
+  }
+},
+{
+  "model": "posts.tags",
+  "pk": 35,
+  "fields": {
+    "slug": "kafka",
+    "title": "Kafka"
+  }
+},
+{
+  "model": "posts.tags",
+  "pk": 36,
+  "fields": {
+    "slug": "celery",
+    "title": "Celery"
+  }
+},
+{
   "model": "users.coder",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$1000000$xFHfjFgtnCY6WmnNqNEawW$HSKhMmQfrNJBv9IxZObmgRfMoNXGdW3YXVkn59RGsYo=",
-    "last_login": "2025-07-26T15:04:21.007Z",
+    "last_login": "2025-09-13T00:11:21.668Z",
     "is_superuser": true,
     "username": "tami",
-    "first_name": "Тамирон",
-    "last_name": "Пост",
+    "first_name": "Tamiron",
+    "last_name": "Post",
     "is_staff": true,
     "is_active": true,
     "date_joined": "2025-07-24T15:45:50Z",
@@ -1112,7 +2023,9 @@
     "birthday": "2007-10-11T00:00:00Z",
     "about": "Я Backend-разработчик, почти с 3-х летним стажем. Начала свой путь в IT с изучения HTML / CSS ну и JS конечно,\r\nно мне что-то не зашло. Думала стать Frontendером но все как-то по другому получилось 😅, поняла, что не мое это. \r\nЧто хочу больше логики и всего такого.\r\n\r\nВ данный момент мой основной язык это Python 🐍. Отлично его знаю и люблю. Знаю довольно много его библиотек и часто использую некоторые из низ\r\nПрактикую такие фреймворки как Flask и Django. В скором времени хочу пробовать переходить на Rest-API и использовать React-Js в качестве Fronta 💻🎨\r\n\r\nИз БД работаю с SQLite, SQL-Server Microsoft, MySQL и вот начинаю изучать PosgresSQL\r\n\r\nУмею также работать с разными API, Git, Docker и т.д\r\nПомимо этого интересуюсь сетями и операционными системами Linux 🐧\r\n\r\nссылочка на GitHub кому интересно: https://github.com/lublu-coffee",
     "email": "tdrozdikova@gmail.com",
-    "groups": [],
+    "groups": [
+      2
+    ],
     "user_permissions": []
   }
 },
@@ -1121,7 +2034,7 @@
   "pk": 3,
   "fields": {
     "password": "pbkdf2_sha256$1000000$r8t1T3TVxpZz6E07LmSmAB$lCX5MPdvPDF1aDXTC72PCDG+NhGhGrzo9AVxdXlkNTk=",
-    "last_login": "2025-07-26T14:34:04.365Z",
+    "last_login": "2025-09-12T17:41:23.925Z",
     "is_superuser": false,
     "username": "Lari",
     "first_name": "Лари",
@@ -1141,22 +2054,87 @@
 },
 {
   "model": "users.coder",
-  "pk": 4,
+  "pk": 5,
   "fields": {
-    "password": "!brf6jKDfsNKOf2vhW8sRFXkC1k4aD3IlUAesTRba",
-    "last_login": "2025-07-29T12:44:47.470Z",
+    "password": "pbkdf2_sha256$1000000$VZaUNqoHBwP2zDOen7mCHK$X8S7/83uNZAb139x+vYeZ+A+cy+EnwMqrDLbe94G5/E=",
+    "last_login": "2025-08-21T09:49:55.729Z",
+    "is_superuser": false,
+    "username": "Salmon",
+    "first_name": "Лосось",
+    "last_name": "Рыбович",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-08-04T09:38:01.143Z",
+    "photo": "users_photo/__T5TqpMO.jfif",
+    "birthday": "1925-01-01T00:00:00Z",
+    "about": "Я рыба, учу исключительно Pascal",
+    "email": "salmon@gmail.com",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.coder",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$KPBvjMfzbDFHHCFxySfepf$6V73hHq6tvpD6Rfya05sttS2XWOftMYZ2CnM8RgUH3U=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user1Love",
+    "first_name": "Федя",
+    "last_name": "Воробьев",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-08-04T15:49:41.011Z",
+    "photo": "users_photo/no_ava.jpg",
+    "birthday": "1925-01-01T00:00:00Z",
+    "about": "ничего",
+    "email": "vorobie@gmail.com",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.coder",
+  "pk": 13,
+  "fields": {
+    "password": "!HwXmkIdPim59nVNN12iVHEPdNzVevqEzkxnnmJ3L",
+    "last_login": "2025-08-18T11:13:12.399Z",
+    "is_superuser": false,
+    "username": "brajniklychi88",
+    "first_name": "Harley",
+    "last_name": "Forest",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-08-18T11:13:12.321Z",
+    "photo": "users_photo/no_ava.jpg",
+    "birthday": null,
+    "about": "",
+    "email": "brajniklychi88@gmail.com",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.coder",
+  "pk": 16,
+  "fields": {
+    "password": "!EiXOhohDKZW5Abu3JGvX5v3f6yz0sP3QY6EfGgUf",
+    "last_login": "2025-08-20T22:58:14.230Z",
     "is_superuser": false,
     "username": "lublu-coffee",
-    "first_name": "Tami",
+    "first_name": "YrtemViZ5",
     "last_name": "",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2025-07-29T09:59:15.335Z",
+    "date_joined": "2025-08-18T11:20:35.850Z",
     "photo": "users_photo/no_ava.jpg",
     "birthday": null,
     "about": "",
     "email": "sonyadrozdikova@gmail.com",
-    "groups": [],
+    "groups": [
+      2
+    ],
     "user_permissions": []
   }
 }

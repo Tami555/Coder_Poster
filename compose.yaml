@@ -1,0 +1,111 @@
+services:
+  postgresql:
+    image: postgres:17-alpine
+    container_name: postgres_db
+    restart: always
+    volumes:
+      - "data-db:/var/lib/postgresql/data"
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_DB=${DB_NAME}
+    networks:
+      - codernet
+
+  adminer:
+    image: adminer
+    container_name: adminer_db
+    ports:
+      - "8080:8080"
+    links:
+      - 'postgresql:db'
+    networks:
+      - codernet
+    depends_on:
+      - postgresql
+
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - codernet
+    volumes:
+      - data-redis:/data
+    
+  rabbit:
+    image: rabbitmq
+    container_name: rabbit
+    ports:
+      - "5672:5672"
+    depends_on:
+      - redis 
+    networks:
+      - codernet
+
+  django:
+    build: ./Coder
+    image: django_backend_coder
+    restart: always
+    container_name: django_backend_coder
+    command: python manage.py runserver 0.0.0.0:8000
+    env_file:
+      - .env
+    volumes:
+      - ./Coder:/app/www/coder
+    ports:
+      - "8000:8000"
+    networks:
+      - codernet
+    depends_on:
+      - postgresql
+      - redis
+      - rabbit
+
+  celery_worker:
+    build: ./Coder
+    container_name: celery_worker
+    command: celery -A Coder worker --pool=solo --loglevel=info
+    volumes:
+      - ./Coder:/app/www/coder
+    working_dir: /app/www/coder
+    environment:
+      - DJANGO_SETTINGS_MODULE=Coder.settings
+    env_file:
+      - .env
+    networks:
+      - codernet
+    depends_on:
+      - redis
+      - rabbit
+      - django
+      - postgresql
+
+  flower:
+    build: ./Coder
+    container_name: flower
+    command: celery -A Coder flower --port=5555 --broker=amqp://rabbit:5672//
+    environment:
+      - DJANGO_SETTINGS_MODULE=Coder.settings
+    ports:
+      - "5555:5555"
+    volumes:
+      - ./Coder:/app/www/coder
+    working_dir: /app/www/coder
+    env_file:
+      - .env
+    networks:
+      - codernet
+    depends_on:
+      - redis
+      - rabbit
+      - celery_worker
+    
+volumes:
+  data-db:
+  data-redis:
+
+networks:
+  codernet:
+    driver: bridge
