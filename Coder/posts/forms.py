@@ -9,3 +9,9 @@ class AddPostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'description', 'image', 'content', 'category', 'tags']
+
+    def clean_tags(self):
+        tags = self.cleaned_data.get('tags')
+        if tags and tags.count() > 5:
+            raise forms.ValidationError("Можно выбрать не более 5 тегов.")
+        return tags

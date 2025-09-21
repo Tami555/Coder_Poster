@@ -53,6 +53,12 @@ class Post(models.Model):
         # maybe_like_posts = (same_category_posts | same_tags_posts).distinct()
         return same_tags_posts.prefetch_related('tags')[:4]
 
+    def get_likes_count(self):
+        return self.user_reactions.filter(reaction_type=Reaction.ReactionType.LIKE).count()
+
+    def get_dislikes_count(self):
+        return self.user_reactions.filter(reaction_type=Reaction.ReactionType.DISLIKE).count()
+
     def save(self, **kwargs):
         self.slug = create_slug_ru_to_eng(self.title)
         return super().save(**kwargs)
@@ -96,3 +102,27 @@ class Tags(models.Model):
     def save(self, **kwargs):
         self.slug = create_slug_ru_to_eng(self.title)
         return super().save(**kwargs)
+
+
+class Reaction(models.Model):
+    class ReactionType(models.IntegerChoices):
+        LIKE = 1, 'лайк'
+        DISLIKE = 0, 'дизлайк'
+
+    user = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        related_name='post_reactions'
+    )
+    post = models.ForeignKey(
+        'Post',
+        on_delete=models.CASCADE,
+        related_name='user_reactions'
+    )
+    reaction_type = models.IntegerField(choices=ReactionType.choices)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'post')
+        verbose_name = 'Реакция на пост'
+        verbose_name_plural = 'Реакции на посты'

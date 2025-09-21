@@ -82,6 +82,18 @@
             {{post.content|linebreaks}}
         </div>
 
+        <div class="set-reaction">
+            <h2>Оцените пост:</h2>
+            <div class="reaction">
+                <img src="https://images.icon-icons.com/688/PNG/512/like-thumbs-up-hand-social-media_icon-icons.com_61429.png">
+                <p>{{post.get_likes_count}}</p>
+            </div>
+            <div class="reaction">
+                <img src="https://images.icon-icons.com/688/PNG/512/thumbs-down-hand-social-media-dislike_icon-icons.com_61424.png">
+                <p>{{post.get_dislikes_count}}</p>
+            </div>
+        </div>
+
         {% with maybe_like_posts=post.get_maybe_like_post %}
         {% if maybe_like_posts|length %}
         <h2 class="maybe_like_title">Вам может понравиться: </h2>
