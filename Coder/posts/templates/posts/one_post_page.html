@@ -132,6 +132,7 @@
         <!-- CSRF токен для AJAX -->
         <input type="hidden" id="csrf-token" value="{{ csrf_token }}">
         <input type="hidden" id="post-id" value="{{ post.id }}">
+        <input type="hidden" id="user-reaction" value="{{ user_reaction }}">
 
         {% with maybe_like_posts=post.get_maybe_like_post %}
         {% if maybe_like_posts|length %}

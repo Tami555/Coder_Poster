@@ -224,9 +224,6 @@ def set_reaction(request):
         return JsonResponse({'success': False, 'message': 'Method not allowed'}, status=405)
 
     try:
-        # Для отладки сначала проверяем базовые вещи
-        print(f"User: {request.user}, Authenticated: {request.user.is_authenticated}")
-
         if not request.user.is_authenticated:
             return JsonResponse({
                 'success': False,
@@ -237,27 +234,50 @@ def set_reaction(request):
         post_id = data.get('post_id')
         reaction_type = data.get('reaction_type')
 
-        print(f"Received data: post_id={post_id}, reaction_type={reaction_type}")
-
         post = Post.objects.get(id=post_id)
 
-        # Преобразуем строку в числовое значение
-        reaction_value = 1 if reaction_type == 'like' else 0
+        # Проверяем, есть ли уже реакция пользователя
+        try:
+            existing_reaction = Reaction.objects.get(user=request.user, post=post)
+            current_reaction = 'like' if existing_reaction.reaction_type == 1 else 'dislike'
 
-        # Создаем или обновляем реакцию
-        reaction, created = Reaction.objects.update_or_create(
-            user=request.user,
-            post=post,
-            defaults={'reaction_type': reaction_value}
-        )
+            # Если пользователь нажимает на ту же реакцию - удаляем её
+            if current_reaction == reaction_type:
+                existing_reaction.delete()
+                return JsonResponse({
+                    'success': True,
+                    'message': 'Реакция удалена!',
+                    'likes_count': post.get_likes_count(),
+                    'dislikes_count': post.get_dislikes_count(),
+                    'removed': True
+                })
+            else:
+                # Если нажимает на другую реакцию - обновляем
+                existing_reaction.reaction_type = 1 if reaction_type == 'like' else 0
+                existing_reaction.save()
+                return JsonResponse({
+                    'success': True,
+                    'message': 'Реакция изменена!',
+                    'likes_count': post.get_likes_count(),
+                    'dislikes_count': post.get_dislikes_count(),
+                    'removed': False
+                })
 
-        return JsonResponse({
-            'success': True,
-            'message': 'Реакция сохранена!',
-            'likes_count': post.get_likes_count(),
-            'dislikes_count': post.get_dislikes_count(),
-            'is_new': created
-        })
+        except Reaction.DoesNotExist:
+            # Если реакции нет - создаем новую
+            reaction_value = 1 if reaction_type == 'like' else 0
+            Reaction.objects.create(
+                user=request.user,
+                post=post,
+                reaction_type=reaction_value
+            )
+            return JsonResponse({
+                'success': True,
+                'message': 'Реакция сохранена!',
+                'likes_count': post.get_likes_count(),
+                'dislikes_count': post.get_dislikes_count(),
+                'removed': False
+            })
 
     except Post.DoesNotExist:
         return JsonResponse({

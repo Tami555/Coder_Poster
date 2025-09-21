@@ -587,6 +587,39 @@
     border: 1px solid #F44336;
 }
 
+/* Анимация для удаления реакции */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+.reaction-item.active.removing {
+    animation: fadeOut 0.3s ease-out forwards;
+}
+
+/* Анимация для добавления реакции */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.reaction-item.active.adding {
+    animation: pulse 0.3s ease-in-out;
+}
+
 /* Анимации */
 @keyframes confettiFall {
     0% {
