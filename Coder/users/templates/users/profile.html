@@ -65,6 +65,7 @@
 
         {% if coder == user %}
             <div class="profile-actions">
+                <a href="{% url 'liked_me' %}" class="action-btn logout-btn">Понравившиеся</a>
                 <a href="{% url 'users:profile_edit' %}" class="action-btn edit-btn">Редактировать профиль</a>
                 <a href="{% url 'users:logout' %}" class="action-btn logout-btn">Выйти</a>
             </div>

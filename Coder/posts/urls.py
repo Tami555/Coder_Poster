@@ -10,6 +10,7 @@ urlpatterns = [
     path('posts/tags/<slug:slug_tag>', views.PostsByTag.as_view(), name='post_by_tags'),
     path('posts/category/<slug:slug_category>', views.PostsByCategory.as_view(), name='post_by_category'),
     path('posts/set_reaction/', views.set_reaction, name='set_reaction'),
+    path('posts/liked_me/', views.LikeMePosts.as_view(), name='liked_me'),
     path('posts/<slug:slug_post>/', views.OnePost.as_view(), name='post_by_slug'),
     path('post/add/', views.AddPost.as_view(), name='add_post'),
     path('post/edit/<slug:slug_post>', views.EditPost.as_view(), name='edit_post'),

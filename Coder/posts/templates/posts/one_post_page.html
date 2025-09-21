@@ -21,7 +21,9 @@
                 <div class="meta-item">
                     <span class="meta-label">Автор:</span>
                     <a href="{% url 'users:profile' post.coder.pk %}" class="author-link">
-                        {% if post.coder.first_name %}
+                        {% if post.coder.username == user.username %}
+                            Вы
+                        {% elif post.coder.first_name %}
                             {{post.coder.first_name}} {{post.coder.last_name}}
                         {% else %}
                             {{post.coder.username}}

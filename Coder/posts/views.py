@@ -198,6 +198,25 @@ class DeletePost(DataFormMixin, PermissionRequiredMixin, LoginRequiredMixin, Del
         return reverse('users:profile', args=[self.request.user.pk])
 
 
+class LikeMePosts(LoginRequiredMixin, ListView):
+    login_url = 'users:login'
+    template_name = 'posts/posts_page.html'
+    context_object_name = 'posts'
+    paginate_by = 5
+
+    def get_queryset(self):
+        user_posts = self.request.user.post_reactions.values('post',).filter(
+            reaction_type=Reaction.ReactionType.LIKE)
+        posts = Post.objects.filter(pk__in=(x['post'] for x in user_posts), status=Post.Status.APPROVED)
+        return posts
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Понравившиеся Посты'
+        context['title_type'] = 'Мне Нравятся'
+        return context
+
+
 # Реакции на посты (лайки\дизлайки)
 @require_http_methods(["POST"])
 def set_reaction(request):
