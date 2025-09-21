@@ -59,6 +59,16 @@ class Post(models.Model):
     def get_dislikes_count(self):
         return self.user_reactions.filter(reaction_type=Reaction.ReactionType.DISLIKE).count()
 
+    def get_user_reaction(self, user):
+        """Возвращает реакцию пользователя на этот пост"""
+        if not user.is_authenticated:
+            return None
+        try:
+            reaction = self.user_reactions.get(user=user)
+            return reaction.reaction_type
+        except Reaction.DoesNotExist:
+            return None
+
     def save(self, **kwargs):
         self.slug = create_slug_ru_to_eng(self.title)
         return super().save(**kwargs)
