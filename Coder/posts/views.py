@@ -1,12 +1,17 @@
+import json
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.db.models import Prefetch, Q
-from django.http import HttpRequest, HttpResponse, Http404, HttpResponseForbidden, HttpResponseNotFound, HttpResponseServerError
+from django.http import HttpRequest, HttpResponse, Http404, HttpResponseForbidden, HttpResponseNotFound, \
+    HttpResponseServerError, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.views.decorators.http import require_POST, require_http_methods
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from posts.models import Post, Tags, Category
+from posts.models import Post, Tags, Category, Reaction
 from .forms import AddPostForm
 from users.utils import DataFormMixin
 # задачи celery
@@ -94,6 +99,18 @@ class OnePost(DetailView):
             raise Http404("Post not found")
         return post
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        post = context['post']
+
+        # Получаем реакцию текущего пользователя
+        user_reaction = None
+        if self.request.user.is_authenticated:
+            user_reaction = post.get_user_reaction(self.request.user)
+
+        context['user_reaction'] = user_reaction
+        return context
+
 
 class AddPost(DataFormMixin, PermissionRequiredMixin, LoginRequiredMixin, CreateView):
     form_class = AddPostForm
@@ -179,6 +196,100 @@ class DeletePost(DataFormMixin, PermissionRequiredMixin, LoginRequiredMixin, Del
 
     def get_success_url(self):
         return reverse('users:profile', args=[self.request.user.pk])
+
+
+class LikeMePosts(LoginRequiredMixin, ListView):
+    login_url = 'users:login'
+    template_name = 'posts/posts_page.html'
+    context_object_name = 'posts'
+    paginate_by = 5
+
+    def get_queryset(self):
+        user_posts = self.request.user.post_reactions.values('post',).filter(
+            reaction_type=Reaction.ReactionType.LIKE)
+        posts = Post.objects.filter(pk__in=(x['post'] for x in user_posts), status=Post.Status.APPROVED)
+        return posts
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Понравившиеся Посты'
+        context['title_type'] = 'Мне Нравятся'
+        return context
+
+
+# Реакции на посты (лайки\дизлайки)
+@require_http_methods(["POST"])
+def set_reaction(request):
+    if request.method != 'POST':
+        return JsonResponse({'success': False, 'message': 'Method not allowed'}, status=405)
+
+    try:
+        if not request.user.is_authenticated:
+            return JsonResponse({
+                'success': False,
+                'message': 'Требуется авторизация'
+            }, status=401)
+
+        data = json.loads(request.body)
+        post_id = data.get('post_id')
+        reaction_type = data.get('reaction_type')
+
+        post = Post.objects.get(id=post_id)
+
+        # Проверяем, есть ли уже реакция пользователя
+        try:
+            existing_reaction = Reaction.objects.get(user=request.user, post=post)
+            current_reaction = 'like' if existing_reaction.reaction_type == 1 else 'dislike'
+
+            # Если пользователь нажимает на ту же реакцию - удаляем её
+            if current_reaction == reaction_type:
+                existing_reaction.delete()
+                return JsonResponse({
+                    'success': True,
+                    'message': 'Реакция удалена!',
+                    'likes_count': post.get_likes_count(),
+                    'dislikes_count': post.get_dislikes_count(),
+                    'removed': True
+                })
+            else:
+                # Если нажимает на другую реакцию - обновляем
+                existing_reaction.reaction_type = 1 if reaction_type == 'like' else 0
+                existing_reaction.save()
+                return JsonResponse({
+                    'success': True,
+                    'message': 'Реакция изменена!',
+                    'likes_count': post.get_likes_count(),
+                    'dislikes_count': post.get_dislikes_count(),
+                    'removed': False
+                })
+
+        except Reaction.DoesNotExist:
+            # Если реакции нет - создаем новую
+            reaction_value = 1 if reaction_type == 'like' else 0
+            Reaction.objects.create(
+                user=request.user,
+                post=post,
+                reaction_type=reaction_value
+            )
+            return JsonResponse({
+                'success': True,
+                'message': 'Реакция сохранена!',
+                'likes_count': post.get_likes_count(),
+                'dislikes_count': post.get_dislikes_count(),
+                'removed': False
+            })
+
+    except Post.DoesNotExist:
+        return JsonResponse({
+            'success': False,
+            'message': 'Пост не найден'
+        }, status=404)
+    except Exception as e:
+        print(f"Error: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'message': 'Ошибка сервера'
+        }, status=500)
 
 
 def error_404(request: HttpRequest, exception):

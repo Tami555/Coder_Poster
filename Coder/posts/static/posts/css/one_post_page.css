@@ -417,6 +417,232 @@
     }
 }
 
+/* БЛОК РЕАКЦИЙ */
+.reactions-section {
+    border-radius: 20px;
+    justify-self: center;
+    width: 500px;
+    padding: 20px;
+    margin: 30px 0;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+}
+
+.reactions-title {
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.reactions-container {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    align-items: center;
+}
+
+.reaction-item {
+    position: relative;
+    cursor: pointer;
+    padding: 20px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid transparent;
+}
+
+.reaction-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+.reaction-item.active {
+    border-color: currentColor;
+    transform: scale(1.1);
+}
+
+.like-reaction {
+    /* color: #4CAF50; */
+    color: #90dd25;
+}
+
+.like-reaction.active {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(76, 175, 80, 0.4));
+}
+
+.dislike-reaction {
+    /* color: #F44336; */
+    color: black;
+}
+
+.dislike-reaction.active {
+    background: linear-gradient(135deg, rgba(244, 67, 54, 0.2), rgba(244, 67, 54, 0.4));
+}
+
+.reaction-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.9);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.reaction-item:hover .reaction-icon {
+    transform: scale(1.2);
+}
+
+.reaction-svg {
+    width: 30px;
+    height: 30px;
+    fill: currentColor;
+}
+
+.reaction-count {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 8px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.reaction-label {
+    color: rgba(255,255,255,0.9);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Анимация салюта для лайка */
+.confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(45deg, #4CAF50, #8BC34A, #CDDC39, #FFEB3B);
+    border-radius: 50%;
+    opacity: 0;
+}
+
+/* Анимация взрыва для дизлайка */
+.explosion-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.explosion-particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: linear-gradient(45deg, #F44336, #FF5252, #FF1744);
+    border-radius: 50%;
+    opacity: 0;
+}
+
+/* Сообщение о реакции */
+.reaction-message {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.reaction-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reaction-message.success {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4CAF50;
+    border: 1px solid #4CAF50;
+}
+
+.reaction-message.error {
+    background: rgba(244, 67, 54, 0.2);
+    color: #F44336;
+    border: 1px solid #F44336;
+}
+
+/* Анимация для удаления реакции */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+.reaction-item.active.removing {
+    animation: fadeOut 0.3s ease-out forwards;
+}
+
+/* Анимация для добавления реакции */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.reaction-item.active.adding {
+    animation: pulse 0.3s ease-in-out;
+}
+
+/* Анимации */
+@keyframes confettiFall {
+    0% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(100px) rotate(360deg);
+    }
+}
+
+@keyframes explosion {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--tx), var(--ty)) scale(2);
+    }
+}
+
 /* Адаптивность для бейджа статуса */
 @media (max-width: 768px) {
     .status-badge {
@@ -435,5 +661,17 @@
     .post-action-btn {
         width: 100%;
         justify-content: center;
+    }
+}
+
+/* Адаптивность для реакций */
+@media (max-width: 768px) {
+    .reactions-container {
+        gap: 30px;
+        flex-direction: column;
+    }
+
+    .reaction-item {
+        width: 120px;
     }
 }

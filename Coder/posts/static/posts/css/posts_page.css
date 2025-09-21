@@ -44,7 +44,7 @@
     justify-content: space-between;
     width: 950px;
     border-radius: 40px;
-    background-color: aliceblue;
+    background-color: whitesmoke;
     color: rgb(15, 16, 22);
     height: 300px;
     margin: 40px;
@@ -249,4 +249,21 @@
     color: rgb(15, 16, 22);
     background-color: #ADFF2F;
     font-weight: 600;
+}
+
+.likes_block{
+    align-self: end;
+    margin: 0px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.likes_block img{
+    width: 35px;
+    height: 35px;
+}
+.likes_block p{
+    color: black;
+    font-size: 12px;
 }

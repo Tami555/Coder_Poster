@@ -1,5 +1,5 @@
 from django import template
-from ..models import Tags, Category
+from ..models import Tags, Category, Reaction
 
 register = template.Library()
 
@@ -16,3 +16,13 @@ def show_menu_block(context):
         'user': request.user,
         'perms': context.get('perms', request.user.get_all_permissions())
     }
+
+
+@register.simple_tag
+def get_pretty_reaction(reaction_count):
+    count = int(reaction_count)
+    if count >= 1000000:
+        return f'{round(count / 1000000, 1)} млн'
+    elif count >= 1000:
+        return f'{round(count / 1000, 1)} тыс'
+    return count

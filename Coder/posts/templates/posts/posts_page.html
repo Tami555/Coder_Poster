@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load posts_tags %}
 
 {% block headstyle %}
     <link type="text/css" rel="stylesheet" href="{% static 'posts/css/posts_page.css' %}">
@@ -35,6 +36,10 @@
                                 {{t.title}}
                             </a>
                         {% endfor %}
+                    </div>
+                    <div class="likes_block">
+                        <img src="https://images.icon-icons.com/37/PNG/512/like_favorite_heart_3524.png"/>
+                        <p>{% get_pretty_reaction p.get_likes_count %}</p>
                     </div>
                 </div>
                 </a>
