@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block headstyle %}
+    <link type="text/css" rel="stylesheet" href="{% static 'users/css/list_user.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <h1 class="title">{{ title }}</h1>
+
+    {% if coders %}
+    <div class="list-block-users">
+        {% for c in coders %}
+            <div class="block-user" onclick="location.href='{% url 'users:profile' c.pk %}'">
+                <img src="{{ c.photo.url }}" alt="Аватар {{ c.username }}">
+                <a href="{% url 'users:profile' c.pk %}">
+                    {% if c.first_name %}
+                        {{ c.first_name }} {{ c.last_name }}
+                    {% else %}
+                        {{ c.username }}
+                    {% endif %}
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    <p class="phrase">{{ phrase }}</p>
+    {% else %}
+        <div class="empty-state">
+            <h2>Пока никого нет :(</h2>
+            <p>Здесь скоро появятся интересные люди!</p>
+        </div>
+    {% endif %}
+</div>
+<div class="navigation">
+    <a href="{% url 'users:profile' user.pk %}" class="back-button">
+        ← Назад в профиль
+    </a>
+</div>
+{% endblock %}

@@ -5,9 +5,10 @@ from django.contrib.auth.views import LoginView
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView, TemplateView, UpdateView, DetailView
+from django.views.generic import CreateView, TemplateView, UpdateView, DetailView, ListView
 
 from .forms import LoginUserForm, RegistrationUserForm, EditAccountUserForm
+from .models import Subscription
 from .utils import DataFormMixin
 
 
@@ -66,3 +67,35 @@ class EditAccountUser(DataFormMixin, LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('users:profile', args=[self.request.user.pk])
+
+
+class MySubscribers(LoginRequiredMixin, ListView):
+    template_name = 'users/list_user.html'
+    context_object_name = 'coders'
+
+    def get_queryset(self):
+        return get_user_model().objects.filter(
+            subscriptions__author=self.request.user
+        ).select_related().prefetch_related('subscriptions')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Ваши подписчики'
+        context['phrase'] = "Подписчики — это команда, которая поддерживает твой творческий полет"
+        return context
+
+
+class MySubscriptions(LoginRequiredMixin, ListView):
+    template_name = 'users/list_user.html'
+    context_object_name = 'coders'
+
+    def get_queryset(self):
+        return get_user_model().objects.filter(
+            subscribers__subscriber=self.request.user
+        ).select_related().prefetch_related('subscribers')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Ваши подписки'
+        context['phrase'] = "Ваши подписки — это любимые уголки, где всегда ждут с новыми идеями."
+        return context
