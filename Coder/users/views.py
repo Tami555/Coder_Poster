@@ -54,7 +54,9 @@ class ProfileUser(DataFormMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        return self.get_context_mixin(context, title=self.title_page)
+        user = self.request.user
+        is_subscribed = user.get_is_subscribed(context['coder']) if user.is_authenticated else False
+        return self.get_context_mixin(context, title=self.title_page, is_subscribed=is_subscribed)
 
 
 class EditAccountUser(DataFormMixin, LoginRequiredMixin, UpdateView):

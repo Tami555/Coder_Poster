@@ -103,22 +103,15 @@ class OnePost(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         post = context['post']
+        user = self.request.user
 
         # Получаем реакцию текущего пользователя
         user_reaction = None
-        if self.request.user.is_authenticated:
+        if user.is_authenticated:
             user_reaction = post.get_user_reaction(self.request.user)
 
-        # Проверяем подписку текущего пользователя на автора поста
-        is_subscribed = False
-        if self.request.user.is_authenticated and self.request.user != post.coder:
-            is_subscribed = Subscription.objects.filter(
-                subscriber=self.request.user,
-                author=post.coder
-            ).exists()
-
-        context['is_subscribed'] = is_subscribed
         context['user_reaction'] = user_reaction
+        context['is_subscribed'] = user.get_is_subscribed(post.coder) if user.is_authenticated else False
         return context
 
 

@@ -3,6 +3,7 @@
 
 {% block headstyle %}
     <link type="text/css" rel="stylesheet" href="{% static 'users/css/profile.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'users/css/template_tags/subscribe_block.css'%}">
 {% endblock %}
 
 
@@ -44,13 +45,13 @@
                         {% endif %}
                     </div>
                      <div class="meta-item">
-                        <span class="meta-icon">👤</span>
-                        {% if coder == user %}
-                        <a href="{% url 'users:my_subscriptions' %}" style="color:white" title="Посмотреть подписки">
-                            {{coder.get_count_subscriptions}} подписки
-                        </a>
+                         {% if coder == user %}
+                            <span class="meta-icon">👤</span>
+                            <a href="{% url 'users:my_subscriptions' %}" style="color:white" title="Посмотреть подписки">
+                                {{coder.get_count_subscriptions}} подписки
+                            </a>
                         {% else %}
-                        <span>{{coder.get_count_subscriptions}} подписки</span>
+                            {% include "users/template_tags/subscribe_block.html" with id=coder.id username=coder.username %}
                         {% endif %}
                     </div>
                 </div>
@@ -97,4 +98,8 @@
         {% endif %}
     </div>
 {% endwith %}
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'users/js/subscriptions.js' %}"></script>
 {% endblock %}

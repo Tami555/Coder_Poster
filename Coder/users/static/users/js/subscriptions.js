@@ -63,14 +63,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 subscribeBtn.classList.add('subscribed');
                 btnText.textContent = 'Вы подписаны';
                 playSubscribeAnimation();
-                showMessage('Вы успешно подписались!', 'success');
+//                showMessage('Вы успешно подписались!', 'success');
             } else {
                 showMessage(data.message, 'error');
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            showMessage('Ошибка соединения', 'error');
+            showMessage('Ошибка соединения. Возможно вы не авторизованы!', 'error');
         })
         .finally(() => {
             // Скрываем лоадер
@@ -107,14 +107,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 isSubscribed = false;
                 subscribeBtn.classList.remove('subscribed');
                 btnText.textContent = 'Подписаться';
-                showMessage('Вы отписались', 'info');
+//                showMessage('Вы отписались', 'info');
             } else {
                 showMessage(data.message, 'error');
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            showMessage('Ошибка соединения', 'error');
+            showMessage('Ошибка соединения.\nВозможно вы не авторизованы!', 'error');
         })
         .finally(() => {
             // Скрываем лоадер
@@ -147,9 +147,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function showMessage(text, type) {
         // Используем существующий элемент для сообщений или создаем новый
-        const messageElement = document.getElementById('reaction-message') || createMessageElement();
+        const messageElement = document.getElementById('subscribe-message');
         messageElement.textContent = text;
-        messageElement.className = `reaction-message show ${type}`;
+        messageElement.className = `subscribe-message show ${type}`;
 
         setTimeout(() => {
             messageElement.classList.remove('show');

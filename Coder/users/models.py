@@ -24,6 +24,15 @@ class Coder(AbstractUser):
     def get_count_subscriptions(self):
         return Subscription.objects.filter(subscriber=self).count()
 
+    def get_is_subscribed(self, author):
+        is_subscribed = False
+        if self != author:
+            is_subscribed = Subscription.objects.filter(
+                subscriber=self,
+                author=author
+            ).exists()
+        return is_subscribed
+
 
 class Subscription(models.Model):
     subscriber = models.ForeignKey('Coder', on_delete=models.CASCADE, related_name='subscriptions', verbose_name='Подписчик')

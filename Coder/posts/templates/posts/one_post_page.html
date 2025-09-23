@@ -3,6 +3,7 @@
 
 {% block headstyle %}
     <link type="text/css" rel="stylesheet" href="{% static 'posts/css/one_post_page.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'users/css/template_tags/subscribe_block.css'%}">
 {% endblock %}
 
 {% block content %}
@@ -78,41 +79,9 @@
                     </a>
                 </div>
             {% else %}
-                <!-- Кнопка подписки -->
-                <div class="subscribe-section">
-                    <button class="subscribe-btn {% if is_subscribed %}subscribed{% endif %}"
-                    data-author-id="{{ post.coder.id }}"
-                    data-author-name="{{ post.coder.username }}">
-                        <span class="btn-text">
-                            {% if is_subscribed %}Вы подписаны{% else %}Подписаться{% endif %}
-                        </span>
-                        <span class="btn-loader" style="display: none;">
-                            <div class="loader"></div>
-                        </span>
-                    </button>
-
-                <!-- Анимация подписки -->
-                    <div class="subscribe-animation">
-                        <div class="animation-particle"></div>
-                        <div class="animation-particle"></div>
-                        <div class="animation-particle"></div>
-                    </div>
-                </div>
-
-            <!-- Модальное окно подтверждения отписки -->
-            <div class="unsubscribe-modal" id="unsubscribe-modal">
-                <div class="modal-content">
-                    <h3>Подтверждение отписки</h3>
-                    <p>Вы уверены, что хотите отписаться от <span id="author-name"></span>?</p>
-                    <div class="modal-actions">
-                        <button class="modal-btn cancel-btn">Отмена</button>
-                        <button class="modal-btn confirm-btn">Отписаться</button>
-                    </div>
-                </div>
-            </div>
+                {% include "users/template_tags/subscribe_block.html" with id=post.coder.id username=post.coder.username %}
             {% endif %}
         </div>
-
         <div class="post-content">
             {{post.content|linebreaks}}
         </div>
