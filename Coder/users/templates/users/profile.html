@@ -3,6 +3,7 @@
 
 {% block headstyle %}
     <link type="text/css" rel="stylesheet" href="{% static 'users/css/profile.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'users/css/template_tags/subscribe_block.css'%}">
 {% endblock %}
 
 
@@ -17,8 +18,13 @@
             </div>
 
             <div class="profile-info">
-                <h1 class="profile-name">{{coder.first_name}} {{coder.last_name}}</h1>
-
+                <h1 class="profile-name">
+                    {% if coder.first_name %}
+                        {{coder.first_name}} {{coder.last_name}}
+                    {% else %}
+                        {{coder.username}}
+                    {% endif %}
+                </h1>
                 <div class="profile-meta">
                     <div class="meta-item">
                         <span class="meta-icon">🎂</span>
@@ -27,6 +33,26 @@
                     <div class="meta-item">
                         <span class="meta-icon">✉️</span>
                         <span>{{coder.email}}</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">🏆</span>
+                        {% if coder == user %}
+                        <a href="{% url 'users:my_subscribers' %}" style="color:white" title="Посмотреть подписчиков">
+                           {{coder.get_count_subscribers}} подписчиков
+                        </a>
+                        {% else %}
+                        <span>{{coder.get_count_subscribers}} подписчиков</span>
+                        {% endif %}
+                    </div>
+                     <div class="meta-item">
+                         {% if coder == user %}
+                            <span class="meta-icon">👤</span>
+                            <a href="{% url 'users:my_subscriptions' %}" style="color:white" title="Посмотреть подписки">
+                                {{coder.get_count_subscriptions}} подписки
+                            </a>
+                        {% else %}
+                            {% include "users/template_tags/subscribe_block.html" with id=coder.id username=coder.username %}
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -72,4 +98,8 @@
         {% endif %}
     </div>
 {% endwith %}
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'users/js/subscriptions.js' %}"></script>
 {% endblock %}

@@ -12,6 +12,7 @@ from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.http import require_POST, require_http_methods
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from posts.models import Post, Tags, Category, Reaction
+from users.models import Subscription
 from .forms import AddPostForm
 from users.utils import DataFormMixin
 # задачи celery
@@ -102,13 +103,15 @@ class OnePost(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         post = context['post']
+        user = self.request.user
 
         # Получаем реакцию текущего пользователя
         user_reaction = None
-        if self.request.user.is_authenticated:
+        if user.is_authenticated:
             user_reaction = post.get_user_reaction(self.request.user)
 
         context['user_reaction'] = user_reaction
+        context['is_subscribed'] = user.get_is_subscribed(post.coder) if user.is_authenticated else False
         return context
 
 

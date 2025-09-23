@@ -3,6 +3,7 @@
 
 {% block headstyle %}
     <link type="text/css" rel="stylesheet" href="{% static 'posts/css/one_post_page.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'users/css/template_tags/subscribe_block.css'%}">
 {% endblock %}
 
 {% block content %}
@@ -77,9 +78,10 @@
                         <span>Удалить</span>
                     </a>
                 </div>
+            {% else %}
+                {% include "users/template_tags/subscribe_block.html" with id=post.coder.id username=post.coder.username %}
             {% endif %}
         </div>
-
         <div class="post-content">
             {{post.content|linebreaks}}
         </div>
@@ -159,4 +161,5 @@
 {% endblock %}
 {% block scripts %}
     <script src="{% static 'posts/js/reactions.js' %}"></script>
+    <script src="{% static 'users/js/subscriptions.js' %}"></script>
 {% endblock %}

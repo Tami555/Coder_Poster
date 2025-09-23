@@ -1,0 +1,38 @@
+{% load static %}
+<!-- Кнопка подписки -->
+<div class="subscribe-section">
+    <button class="subscribe-btn {% if is_subscribed %}subscribed{% endif %}"
+            data-author-id="{{ id }}"
+            data-author-name="{{ username }}">
+        <span class="btn-text">
+            {% if is_subscribed %}Вы подписаны{% else %}Подписаться{% endif %}
+        </span>
+        <span class="btn-loader" style="display: none;">
+            <div class="loader"></div>
+        </span>
+    </button>
+    <div id="subscribe-message">
+
+    </div>
+
+    <!-- Анимация подписки -->
+    <div class="subscribe-animation">
+        <div class="animation-particle"></div>
+        <div class="animation-particle"></div>
+        <div class="animation-particle"></div>
+    </div>
+</div>
+
+<!-- Модальное окно подтверждения отписки -->
+<div class="unsubscribe-modal" id="unsubscribe-modal">
+    <div class="modal-content">
+        <h3>Подтверждение отписки</h3>
+        <p>Вы уверены, что хотите отписаться от <span id="author-name"></span>?</p>
+        <div class="modal-actions">
+            <button class="modal-btn cancel-btn">Отмена</button>
+            <button class="modal-btn confirm-btn">Отписаться</button>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="csrf-token" value="{{ csrf_token }}">
