@@ -12,6 +12,7 @@ from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.http import require_POST, require_http_methods
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from posts.models import Post, Tags, Category, Reaction
+from users.models import Subscription
 from .forms import AddPostForm
 from users.utils import DataFormMixin
 # задачи celery
@@ -108,6 +109,15 @@ class OnePost(DetailView):
         if self.request.user.is_authenticated:
             user_reaction = post.get_user_reaction(self.request.user)
 
+        # Проверяем подписку текущего пользователя на автора поста
+        is_subscribed = False
+        if self.request.user.is_authenticated and self.request.user != post.coder:
+            is_subscribed = Subscription.objects.filter(
+                subscriber=self.request.user,
+                author=post.coder
+            ).exists()
+
+        context['is_subscribed'] = is_subscribed
         context['user_reaction'] = user_reaction
         return context
 

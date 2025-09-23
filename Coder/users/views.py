@@ -1,10 +1,13 @@
+import json
+
 from django.contrib.auth import logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
-from django.http import HttpResponse, HttpRequest
+from django.http import HttpResponse, HttpRequest, JsonResponse
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
+from django.views.decorators.http import require_POST
 from django.views.generic import CreateView, TemplateView, UpdateView, DetailView, ListView
 
 from .forms import LoginUserForm, RegistrationUserForm, EditAccountUserForm
@@ -99,3 +102,60 @@ class MySubscriptions(LoginRequiredMixin, ListView):
         context['title'] = 'Ваши подписки'
         context['phrase'] = "Ваши подписки — это любимые уголки, где всегда ждут с новыми идеями."
         return context
+
+
+# обработки подписки
+@require_POST
+@login_required
+def toggle_subscription(request):
+    try:
+        data = json.loads(request.body)
+        author_id = data.get('author_id')
+        action = data.get('action')
+
+        author = get_object_or_404(get_user_model(), id=author_id)
+
+        if request.user == author:
+            return JsonResponse({
+                'success': False,
+                'message': 'Нельзя подписаться на себя'
+            })
+
+        if action == 'subscribe':
+            subscription, created = Subscription.objects.get_or_create(
+                subscriber=request.user,
+                author=author
+            )
+            if created:
+                return JsonResponse({
+                    'success': True,
+                    'message': 'Подписка оформлена'
+                })
+            else:
+                return JsonResponse({
+                    'success': False,
+                    'message': 'Вы уже подписаны'
+                })
+
+        elif action == 'unsubscribe':
+            deleted, _ = Subscription.objects.filter(
+                subscriber=request.user,
+                author=author
+            ).delete()
+
+            if deleted:
+                return JsonResponse({
+                    'success': True,
+                    'message': 'Подписка отменена'
+                })
+            else:
+                return JsonResponse({
+                    'success': False,
+                    'message': 'Подписка не найдена'
+                })
+
+    except Exception as e:
+        return JsonResponse({
+            'success': False,
+            'message': 'Ошибка сервера'
+        })

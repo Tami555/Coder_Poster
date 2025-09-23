@@ -14,6 +14,7 @@ urlpatterns = [
     path('profile/edit/', views.EditAccountUser.as_view(), name='profile_edit'),
     path('my_subscribers/', views.MySubscribers.as_view(), name='my_subscribers'),
     path('my_subscriptions/', views.MySubscriptions.as_view(), name='my_subscriptions'),
+    path('toggle_subscription/', views.toggle_subscription, name='toggle_subscription'),
 
     path('password-reset/', PasswordResetView.as_view(
         template_name='users/forms.html',
